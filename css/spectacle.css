@@ -137,3 +137,5 @@ footer a:hover{color:var(--etoile)}
 .vide{font-size:16px;color:var(--gris);margin:0 0 18px}
 .voir-plus{display:inline-flex;align-items:center;gap:10px;margin-top:26px;cursor:pointer;font:800 16px var(--f-texte);color:var(--encre);background:var(--etoile);border:0;padding:15px 26px;border-radius:2px}
 .voir-plus:hover{background:var(--encre);color:var(--etoile)}
+.video.vertical{aspect-ratio:768/1032;max-width:min(440px,100%);margin-inline:auto}
+.galerie:has(.ph:nth-child(2):last-child){columns:2 280px}
