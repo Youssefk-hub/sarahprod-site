@@ -101,6 +101,7 @@ function secours(c1,c2){c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns=
       <a class="d" href="#weezevent-flashdance-béziers" data-ville="Béziers"><div class="jour">24 avr<span>2027</span></div><div class="lieu">Béziers<small>Zinga Zanga</small></div><div class="pays"></div><span class="acheter">Acheter un billet →</span></a>
       <a class="d" href="#weezevent-flashdance-biarritz" data-ville="Biarritz"><div class="jour">25 avr<span>2027</span></div><div class="lieu">Biarritz<small>Gare du Midi</small></div><div class="pays"></div><span class="acheter">Acheter un billet →</span></a>
     </div>
+    <button class="voir-plus" id="voir-plus" type="button" data-n="27">Voir les 27 autres dates <span aria-hidden="true">↓</span></button>
     <p class="note"><span class="a-completer">À brancher</span>&nbsp; chaque bouton recevra le lien Weezevent de sa date.</p>
   </div>
 </section>
@@ -170,13 +171,20 @@ function secours(c1,c2){c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns=
   document.getElementById('fermer').addEventListener('click',fermer);
   v.addEventListener('click',e=>{if(e.target===v)fermer();});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')fermer();});
+  const rows=[...document.querySelectorAll('#liste .d')],mois=[...document.querySelectorAll('#liste .mois')],btn=document.getElementById('voir-plus');
+  let ouvert=!btn;
+  const majMois=()=>mois.forEach(m=>{let x=m.nextElementSibling,vis=false;while(x&&!x.classList.contains('mois')){if(!x.hidden)vis=true;x=x.nextElementSibling;}m.hidden=!vis;});
+  const replier=()=>{rows.forEach((d,i)=>{d.hidden=!ouvert&&i>=10;});majMois();if(btn){btn.innerHTML=ouvert?'Voir moins de dates <span aria-hidden="true">↑</span>':'Voir les '+btn.dataset.n+' autres dates <span aria-hidden="true">↓</span>';}};
+  if(btn){btn.addEventListener('click',()=>{ouvert=!ouvert;replier();if(!ouvert)document.getElementById('dates').scrollIntoView({behavior:'smooth'});});}
+  replier();
   const f=document.getElementById('filtre');
   if(f){
     const norm=t=>t.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
     f.addEventListener('input',()=>{
-      const q=norm(f.value.trim());let n=0;
-      document.querySelectorAll('#liste .d').forEach(d=>{const ok=!q||norm(d.dataset.ville).includes(q);d.hidden=!ok;if(ok)n++;});
-      document.querySelectorAll('#liste .mois').forEach(m=>{let x=m.nextElementSibling,vis=false;while(x&&!x.classList.contains('mois')){if(!x.hidden)vis=true;x=x.nextElementSibling;}m.hidden=!vis;});
+      const q=norm(f.value.trim());
+      if(!q){document.getElementById('vide').hidden=true;if(btn)btn.hidden=false;replier();return;}
+      let n=0;rows.forEach(d=>{const ok=norm(d.dataset.ville).includes(q);d.hidden=!ok;if(ok)n++;});
+      majMois();if(btn)btn.hidden=true;
       document.getElementById('vide').hidden=n>0;
     });
   }

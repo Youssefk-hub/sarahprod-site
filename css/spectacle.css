@@ -132,6 +132,8 @@ footer a:hover{color:var(--etoile)}
 /* dates groupées par mois + recherche de ville */
 .mois{font-family:var(--f-affiche);font-weight:800;text-transform:uppercase;font-size:22px;letter-spacing:.5px;color:var(--violet);padding:26px 18px 8px;border-bottom:1px solid var(--encre)}
 .filtre-ville{display:flex;flex-direction:column;gap:6px;max-width:420px;margin:0 0 22px;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gris)}
-.filtre-ville input{font:600 17px var(--f-texte);color:var(--encre);padding:14px 16px;border:2px solid var(--encre);border-radius:2px;text-transform:none;letter-spacing:0}
+.filtre-ville input{font:600 17px var(--f-texte);color:var(--encre);background:var(--blanc);color-scheme:light;padding:14px 16px;border:2px solid var(--encre);border-radius:2px;text-transform:none;letter-spacing:0}
 .filtre-ville input:focus{outline:3px solid var(--etoile);outline-offset:1px}
 .vide{font-size:16px;color:var(--gris);margin:0 0 18px}
+.voir-plus{display:inline-flex;align-items:center;gap:10px;margin-top:26px;cursor:pointer;font:800 16px var(--f-texte);color:var(--encre);background:var(--etoile);border:0;padding:15px 26px;border-radius:2px}
+.voir-plus:hover{background:var(--encre);color:var(--etoile)}
