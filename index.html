@@ -363,6 +363,7 @@ function archive(t){
 
 <script>
 
+const PAGES = ["grease","flashdance"];
 const SHOWS = [
   {slug:"grease",        t:"Grease Is The Word",     cat:"Comédie musicale",  c1:"#7A1F1F", c2:"#D94F2B"},
   {slug:"flashdance",    t:"Flashdance The Musical", cat:"Comédie musicale",  c1:"#5B1B5E", c2:"#E0457B"},
@@ -421,7 +422,7 @@ document.getElementById('piste').innerHTML = unTour(false) + unTour(true);
 const liste = document.getElementById('liste');
 function dates(items){
   liste.innerHTML = items.map(d=>{ const sh=find(d.s); return `
-    <a class="d" href="${d.s==='grease'?'/spectacle/grease#dates':'#'}">
+    <a class="d" href="${PAGES.includes(d.s)?'/spectacle/'+d.s+'#dates':'#'}">
       <div class="jour">${d.j} ${d.m}<span>${d.a}</span></div>
       <div class="lieu">${d.ville}<small>${d.salle}</small></div>
       <div class="titre-sp">${esc(sh.t)}</div>
@@ -437,7 +438,7 @@ function murAff(f){
   mur.innerHTML = SHOWS.filter(s=>f==='tous'||s.cat.startsWith(f)).map(sh=>`
     <figure class="aff" style="margin-block:0">
       <span class="punaise"></span>
-      <a href="${sh.slug==='grease'?'/spectacle/grease':'#'}"><img src="https://sarahprod.com/og/${sh.slug}.jpg" onerror="this.onerror=null;this.src=affiche(find('${sh.slug}'))" alt="Affiche ${esc(sh.t)}"></a>
+      <a href="${PAGES.includes(sh.slug)?'/spectacle/'+sh.slug:'#'}"><img src="https://sarahprod.com/og/${sh.slug}.jpg" onerror="this.onerror=null;this.src=affiche(find('${sh.slug}'))" alt="Affiche ${esc(sh.t)}"></a>
       <figcaption><b>${esc(sh.t)}</b><small>${sh.cat}</small></figcaption>
     </figure>`).join('');
 }
