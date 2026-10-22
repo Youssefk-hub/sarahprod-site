@@ -203,7 +203,7 @@ footer a:hover{color:var(--etoile)}
   .aff img{height:240px}
   .jour{font-size:32px}
 }
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){*:not(.piste):not(.archives-piste){animation:none!important;transition:none!important}}
 </style>
 <script>
 /* image de secours des archives si le visuel ne se charge pas (définie avant le contenu) */
@@ -364,7 +364,7 @@ function archive(t){
 
 <script>
 
-const PAGES = ["grease","flashdance","dirty-dancing","sardou","jungle-book","cendrillon","aladin","petite-sirene"];
+const PAGES = ["grease","flashdance","dirty-dancing","sardou","jungle-book","cendrillon","aladin","petite-sirene","pinocchio"];
 const SHOWS = [
   {slug:"grease",        t:"Grease Is The Word",     cat:"Comédie musicale",  c1:"#7A1F1F", c2:"#D94F2B"},
   {slug:"flashdance",    t:"Flashdance The Musical", cat:"Comédie musicale",  c1:"#5B1B5E", c2:"#E0457B"},
