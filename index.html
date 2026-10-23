@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sarah Prod Landing</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Comédies musicales et spectacles en tournée en France, en Belgique et en Suisse : Flashdance, Grease, Dirty Dancing, ABBA, Michel Sardou et spectacles familiaux. 84 dates dans 61 villes jusqu'en 2028.">
+<meta name="description" content="Comédies musicales et spectacles en tournée en France, en Belgique et en Suisse : Flashdance, Grease, Dirty Dancing, ABBA, Michel Sardou et spectacles familiaux. 83 dates dans 56 villes jusqu'en 2028.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
@@ -255,8 +255,8 @@ function archive(t){
   <div class="g">
     <div class="c compteur">
       <div><b>11</b><span>spectacles</span></div>
-      <div><b>84</b><span>dates</span></div>
-      <div><b>61</b><span>villes</span></div>
+      <div><b>83</b><span>dates</span></div>
+      <div><b>56</b><span>villes</span></div>
       <div><b>2028</b><span>dernière date</span></div>
     </div>
   </div>
@@ -291,7 +291,7 @@ function archive(t){
       <p>Choisissez votre ville, votre salle, votre soir. Chaque date mène directement à la billetterie.</p>
     </div>
     <div class="liste" id="liste"></div>
-    <a class="toutes" href="#">Voir les 84 dates →</a>
+    <a class="toutes" href="#">Voir les 83 dates →</a>
   </div>
 </section>
 
@@ -379,12 +379,12 @@ const SHOWS = [
   {slug:"pinocchio",     t:"Pinocchio",              cat:"Spectacle familial",c1:"#6B3410", c2:"#E0A030"}
 ];
 const DATES = [
-  {j:"12", m:"nov", a:"2026", ville:"Roubaix", salle:"Le Colisée",        s:"grease"},
-  {j:"13", m:"nov", a:"2026", ville:"Liège",   salle:"Le Forum",          s:"grease"},
-  {j:"13", m:"jan", a:"2027", ville:"Lyon",    salle:"Bourse du Travail", s:"dirty-dancing"},
-  {j:"29", m:"jan", a:"2027", ville:"Évry",    salle:"L'Agora",           s:"flashdance"},
-  {j:"05", m:"fév", a:"2027", ville:"Toulon",  salle:"Zénith Oméga",      s:"flashdance"},
-  {j:"22", m:"jan", a:"2028", ville:"Troyes",  salle:"Le Cube",           s:"sardou"}
+  {j:"13", m:"nov", a:"2026", ville:"Liège",         salle:"Le Forum",      s:"grease"},
+  {j:"14", m:"nov", a:"2026", ville:"Mons",          salle:"Théâtre Royal", s:"grease"},
+  {j:"27", m:"nov", a:"2026", ville:"Saint-Quentin", salle:"Le Splendid",   s:"grease"},
+  {j:"28", m:"nov", a:"2026", ville:"Compiègne",     salle:"Le Tigre",      s:"grease"},
+  {j:"29", m:"jan", a:"2027", ville:"Évry",          salle:"L'Agora",       s:"flashdance"},
+  {j:"30", m:"jan", a:"2027", ville:"Melun",         salle:"L'Escale",      s:"dirty-dancing"}
 ];
 const find = s => SHOWS.find(x => x.slug === s);
 const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
