@@ -4,8 +4,9 @@ const API = 'https://api.brevo.com/v3';
 // lit les variables sans tenir compte des majuscules/minuscules
 const env = (...noms) => { for (const n of noms) { const k = Object.keys(process.env).find(x => x.toUpperCase() === n); if (k && process.env[k]) return process.env[k].trim(); } return ''; };
 const CLE = () => env('BREVO_API_KEY');
-const LISTE_ALERTES = () => Number(env('BREVO_LISTE_ALERTES', 'BREVO_LISTE_CLIENTS'));
-const LISTE_PRO = () => Number(env('BREVO_LISTE_PROGRAMMATEURS'));
+const num = v => Number((String(v).match(/\d+/) || [0])[0]) || 0; // accepte « 3 », « #3 »…
+const LISTE_ALERTES = () => num(env('BREVO_LISTE_ALERTES', 'BREVO_LISTE_CLIENTS'));
+const LISTE_PRO = () => num(env('BREVO_LISTE_PROGRAMMATEURS'));
 const EMAIL_OK = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const propre = (v, max = 120) => String(v || '').trim().slice(0, max);
 
