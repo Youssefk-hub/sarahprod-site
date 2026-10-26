@@ -295,7 +295,7 @@ function archive(t){
       <p>Choisissez votre ville, votre salle, votre soir. Chaque date mène directement à la billetterie.</p>
     </div>
     <div class="liste" id="liste"></div>
-    <button class="toutes" id="toutes" type="button">Voir toutes les dates ↓</button>
+    <button class="toutes" id="toutes" type="button">Voir toutes les dates</button>
   </div>
 </section>
 
@@ -517,7 +517,7 @@ function dates(items){
 const btnToutes = document.getElementById('toutes'); let ouvert = false;
 function majListe(){ dates(ouvert ? DATES : DATES.slice(0,6));
   btnToutes.hidden = DATES.length <= 6;
-  btnToutes.textContent = ouvert ? 'Voir moins de dates ↑' : `Voir les ${DATES.length-6} autres dates ↓`; }
+  btnToutes.textContent = ouvert ? 'Voir moins de dates' : `Voir les ${DATES.length-6} autres dates`; }
 btnToutes.addEventListener('click',()=>{ ouvert=!ouvert; majListe(); if(!ouvert) document.getElementById('dates').scrollIntoView({behavior:'smooth'}); });
 majListe();
 
@@ -528,7 +528,7 @@ function murAff(f){
     <figure class="aff" style="margin-block:0">
       <span class="punaise"></span>
       <a href="${PAGES.includes(sh.slug)?'/spectacle/'+sh.slug:'#'}"><img src="https://sarahprod.com/og/${sh.slug}.jpg" onerror="this.onerror=null;this.src=affiche(find('${sh.slug}'))" alt="Affiche ${esc(sh.t)}">
-      <figcaption><b>${esc(sh.t)}</b><small>${PAGES.includes(sh.slug)?'Voir le spectacle →':sh.cat}</small></figcaption></a>
+      <figcaption><b>${esc(sh.t)}</b><small>${PAGES.includes(sh.slug)?'Voir le spectacle':sh.cat}</small></figcaption></a>
     </figure>`).join('');
 }
 const PHRASES = {

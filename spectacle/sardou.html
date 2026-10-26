@@ -107,7 +107,7 @@ function secours(c1,c2){c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns=
       <a class="d" href="#weezevent-sardou-perpignan" data-ville="Perpignan"><div class="jour">28 avr<span>2028</span></div><div class="lieu">Perpignan<small>Auditorium Charles Trenet</small></div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
       <a class="d" href="#weezevent-sardou-biarritz" data-ville="Biarritz"><div class="jour">29 avr<span>2028</span></div><div class="lieu">Biarritz<small>Gare du Midi</small></div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
     </div>
-    <button class="voir-plus" id="voir-plus" type="button" data-n="27">Voir les 27 autres dates <span aria-hidden="true">↓</span></button>
+    <button class="voir-plus" id="voir-plus" type="button" data-n="27">Voir les 27 autres dates</button>
     <p class="note"><span class="a-completer">À brancher</span>&nbsp; chaque bouton recevra le lien Weezevent de sa date.</p>
   </div>
 </section>
@@ -171,7 +171,7 @@ function secours(c1,c2){c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns=
   const rows=[...document.querySelectorAll('#liste .d')],mois=[...document.querySelectorAll('#liste .mois')],btn=document.getElementById('voir-plus');
   let ouvert=!btn;
   const majMois=()=>mois.forEach(m=>{let x=m.nextElementSibling,vis=false;while(x&&!x.classList.contains('mois')){if(!x.hidden)vis=true;x=x.nextElementSibling;}m.hidden=!vis;});
-  const replier=()=>{rows.forEach((d,i)=>{d.hidden=!ouvert&&i>=10;});majMois();if(btn){btn.innerHTML=ouvert?'Voir moins de dates <span aria-hidden="true">↑</span>':'Voir les '+btn.dataset.n+' autres dates <span aria-hidden="true">↓</span>';}};
+  const replier=()=>{rows.forEach((d,i)=>{d.hidden=!ouvert&&i>=10;});majMois();if(btn){btn.innerHTML=ouvert?'Voir moins de dates':'Voir les '+btn.dataset.n+' autres dates';}};
   if(btn){btn.addEventListener('click',()=>{ouvert=!ouvert;replier();if(!ouvert)document.getElementById('dates').scrollIntoView({behavior:'smooth'});});}
   replier();
   const f=document.getElementById('filtre');

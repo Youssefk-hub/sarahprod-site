@@ -46,7 +46,7 @@ function secours(c1,c2){c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns=
         <p class="accroche">Il était une fois… un morceau de bois.</p>
         <div class="infos"><span><b>DATES</b>à venir</span></div>
         <div class="actions">
-          <a class="btn jaune" href="/#alertes">Être prévenu des dates <span aria-hidden="true">→</span></a>
+          <a class="btn jaune" href="/#alertes">Être prévenu des dates</a>
           <a class="btn contour" href="#teaser">▶ Voir le teaser</a>
         </div>
       </div>
@@ -62,8 +62,8 @@ function secours(c1,c2){c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns=
       <p>Les premières villes et salles seront annoncées ici. Soyez prévenu dès l'ouverture de la billetterie.</p>
     </div>
     <div class="liste">
-      <a class="d" href="/#alertes"><div class="jour">BIENTÔT<span>TOURNÉE</span></div><div class="lieu">Premières dates<small>Bientôt annoncées</small></div><div class="pays"></div><span class="acheter">Être prévenu →</span></a>
-      <a class="d" href="/#programmateurs"><div class="jour">SALLES<span>PROGRAMMATEURS</span></div><div class="lieu">Accueillir le spectacle<small>Recevoir le dossier de diffusion</small></div><div class="pays"></div><span class="acheter">Nous contacter →</span></a>
+      <a class="d" href="/#alertes"><div class="jour">BIENTÔT<span>TOURNÉE</span></div><div class="lieu">Premières dates<small>Bientôt annoncées</small></div><div class="pays"></div><span class="acheter">Être prévenu</span></a>
+      <a class="d" href="/#programmateurs"><div class="jour">SALLES<span>PROGRAMMATEURS</span></div><div class="lieu">Accueillir le spectacle<small>Recevoir le dossier de diffusion</small></div><div class="pays"></div><span class="acheter">Nous contacter</span></a>
     </div>
   </div>
 </section>
@@ -125,7 +125,7 @@ function secours(c1,c2){c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns=
     <h2>Pinocchio arrive bientôt près de chez vous</h2>
     <p>Les premières dates de la tournée seront annoncées ici. Laissez votre email pour être prévenu en premier.</p>
     <div class="actions">
-      <a class="btn noir" href="/#alertes">Être prévenu des dates →</a>
+      <a class="btn noir" href="/#alertes">Être prévenu des dates</a>
       <a class="btn contour" href="/#programmateurs">Programmer le spectacle</a>
     </div>
   </div>
@@ -151,7 +151,7 @@ function secours(c1,c2){c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns=
   const rows=[...document.querySelectorAll('#liste .d')],mois=[...document.querySelectorAll('#liste .mois')],btn=document.getElementById('voir-plus');
   let ouvert=!btn;
   const majMois=()=>mois.forEach(m=>{let x=m.nextElementSibling,vis=false;while(x&&!x.classList.contains('mois')){if(!x.hidden)vis=true;x=x.nextElementSibling;}m.hidden=!vis;});
-  const replier=()=>{rows.forEach((d,i)=>{d.hidden=!ouvert&&i>=10;});majMois();if(btn){btn.innerHTML=ouvert?'Voir moins de dates <span aria-hidden="true">↑</span>':'Voir les '+btn.dataset.n+' autres dates <span aria-hidden="true">↓</span>';}};
+  const replier=()=>{rows.forEach((d,i)=>{d.hidden=!ouvert&&i>=10;});majMois();if(btn){btn.innerHTML=ouvert?'Voir moins de dates':'Voir les '+btn.dataset.n+' autres dates';}};
   if(btn){btn.addEventListener('click',()=>{ouvert=!ouvert;replier();if(!ouvert)document.getElementById('dates').scrollIntoView({behavior:'smooth'});});}
   replier();
   const f=document.getElementById('filtre');

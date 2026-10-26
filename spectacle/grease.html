@@ -153,7 +153,7 @@ function secours(c1,c2){c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns=
   const rows=[...document.querySelectorAll('#liste .d')],mois=[...document.querySelectorAll('#liste .mois')],btn=document.getElementById('voir-plus');
   let ouvert=!btn;
   const majMois=()=>mois.forEach(m=>{let x=m.nextElementSibling,vis=false;while(x&&!x.classList.contains('mois')){if(!x.hidden)vis=true;x=x.nextElementSibling;}m.hidden=!vis;});
-  const replier=()=>{rows.forEach((d,i)=>{d.hidden=!ouvert&&i>=10;});majMois();if(btn){btn.innerHTML=ouvert?'Voir moins de dates <span aria-hidden="true">↑</span>':'Voir les '+btn.dataset.n+' autres dates <span aria-hidden="true">↓</span>';}};
+  const replier=()=>{rows.forEach((d,i)=>{d.hidden=!ouvert&&i>=10;});majMois();if(btn){btn.innerHTML=ouvert?'Voir moins de dates':'Voir les '+btn.dataset.n+' autres dates';}};
   if(btn){btn.addEventListener('click',()=>{ouvert=!ouvert;replier();if(!ouvert)document.getElementById('dates').scrollIntoView({behavior:'smooth'});});}
   replier();
   const f=document.getElementById('filtre');
