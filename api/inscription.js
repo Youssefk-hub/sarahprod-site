@@ -1,21 +1,36 @@
 // Relais entre les formulaires du site et Brevo. La clé reste côté serveur (variable d'environnement Vercel).
 // Variables à renseigner dans Vercel : BREVO_API_KEY, BREVO_LISTE_ALERTES, BREVO_LISTE_PROGRAMMATEURS
 const API = 'https://api.brevo.com/v3';
+// lit les variables sans tenir compte des majuscules/minuscules
+const env = (...noms) => { for (const n of noms) { const k = Object.keys(process.env).find(x => x.toUpperCase() === n); if (k && process.env[k]) return process.env[k].trim(); } return ''; };
+const CLE = () => env('BREVO_API_KEY');
+const LISTE_ALERTES = () => Number(env('BREVO_LISTE_ALERTES', 'BREVO_LISTE_CLIENTS'));
+const LISTE_PRO = () => Number(env('BREVO_LISTE_PROGRAMMATEURS'));
 const EMAIL_OK = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const propre = (v, max = 120) => String(v || '').trim().slice(0, max);
 
 async function brevo(chemin, corps) {
   const r = await fetch(API + chemin, {
     method: 'POST',
-    headers: { 'api-key': process.env.BREVO_API_KEY, 'Content-Type': 'application/json', Accept: 'application/json' },
+    headers: { 'api-key': CLE(), 'Content-Type': 'application/json', Accept: 'application/json' },
     body: JSON.stringify(corps),
   });
   return r;
 }
 
 module.exports = async (req, res) => {
+  if (req.method === 'GET') { // vérification de la configuration, sans rien révéler
+    const etat = { cle: !!CLE(), liste_alertes: LISTE_ALERTES() || null, liste_programmateurs: LISTE_PRO() || null };
+    if (etat.cle) {
+      const r = await fetch(API + '/contacts/lists?limit=50', { headers: { 'api-key': CLE(), Accept: 'application/json' } }).catch(() => null);
+      etat.brevo = r ? r.status : 'injoignable';
+      if (r && r.ok) { const j = await r.json(); etat.listes_brevo = (j.lists || []).map(l => ({ id: l.id, nom: l.name })); }
+      else if (r) { etat.message = ((await r.json().catch(() => ({}))).message || '').slice(0, 160); }
+    }
+    return res.status(200).json(etat);
+  }
   if (req.method !== 'POST') return res.status(405).json({ ok: false });
-  if (!process.env.BREVO_API_KEY) return res.status(503).json({ ok: false, erreur: 'non-configure' });
+  if (!CLE()) return res.status(503).json({ ok: false, erreur: 'non-configure' });
   let d = req.body || {};
   if (typeof d === 'string') { try { d = JSON.parse(d); } catch { d = {}; } }
   if (d.site) return res.status(200).json({ ok: true }); // champ piège anti-robots
@@ -23,7 +38,7 @@ module.exports = async (req, res) => {
   if (!EMAIL_OK.test(email)) return res.status(400).json({ ok: false, erreur: 'email' });
 
   const pro = d.type === 'programmateur';
-  const liste = Number(pro ? process.env.BREVO_LISTE_PROGRAMMATEURS : process.env.BREVO_LISTE_ALERTES);
+  const liste = pro ? LISTE_PRO() : LISTE_ALERTES();
   const attributs = {};
   if (d.ville) attributs.VILLE = propre(d.ville, 80);
   if (d.nom) attributs.NOM = propre(d.nom, 80);
