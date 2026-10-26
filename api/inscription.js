@@ -7,6 +7,13 @@ const CLE = () => env('BREVO_API_KEY');
 const num = v => Number((String(v).match(/\d+/) || [0])[0]) || 0; // accepte « 3 », « #3 »…
 const LISTE_ALERTES = () => num(env('BREVO_LISTE_ALERTES', 'BREVO_LISTE_CLIENTS'));
 const LISTE_PRO = () => num(env('BREVO_LISTE_PROGRAMMATEURS'));
+// secours : retrouve la liste par son nom dans Brevo si l'ID n'est pas lisible
+async function listeParNom(motif) {
+  const r = await fetch(API + '/contacts/lists?limit=50', { headers: { 'api-key': CLE(), Accept: 'application/json' } }).catch(() => null);
+  if (!r || !r.ok) return 0;
+  const l = ((await r.json()).lists || []).find(x => motif.test(x.name));
+  return l ? l.id : 0;
+}
 const EMAIL_OK = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const propre = (v, max = 120) => String(v || '').trim().slice(0, max);
 
@@ -21,7 +28,7 @@ async function brevo(chemin, corps) {
 
 module.exports = async (req, res) => {
   if (req.method === 'GET') { // vérification de la configuration, sans rien révéler
-    const etat = { cle: !!CLE(), liste_alertes: LISTE_ALERTES() || null, liste_programmateurs: LISTE_PRO() || null };
+    const etat = { cle: !!CLE(), variables_listes: Object.keys(process.env).filter(k => /^brevo_liste/i.test(k)), liste_alertes: LISTE_ALERTES() || null, liste_programmateurs: LISTE_PRO() || null };
     if (etat.cle) {
       const r = await fetch(API + '/contacts/lists?limit=50', { headers: { 'api-key': CLE(), Accept: 'application/json' } }).catch(() => null);
       etat.brevo = r ? r.status : 'injoignable';
@@ -39,7 +46,7 @@ module.exports = async (req, res) => {
   if (!EMAIL_OK.test(email)) return res.status(400).json({ ok: false, erreur: 'email' });
 
   const pro = d.type === 'programmateur';
-  const liste = pro ? LISTE_PRO() : LISTE_ALERTES();
+  const liste = (pro ? LISTE_PRO() : LISTE_ALERTES()) || await listeParNom(pro ? /programm/i : /client|alerte|spectateur/i);
   const attributs = {};
   if (d.ville) attributs.VILLE = propre(d.ville, 80);
   if (d.nom) attributs.NOM = propre(d.nom, 80);
