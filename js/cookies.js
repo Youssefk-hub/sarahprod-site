@@ -3,7 +3,7 @@
    Aucun traceur n'est chargé avant l'accord du visiteur. Choix gardé 6 mois. */
 (function () {
   var CONFIG = {
-    ga4: "",        // identifiant Google Analytics, ex. "G-XXXXXXX"
+    ga4: "G-EVM16W30VM",      // identifiant Google Analytics, ex. "G-XXXXXXX"
     pixelMeta: ""   // identifiant du pixel Meta, ex. "1234567890"
   };
   var CLE = "sp-cookies", DUREE = 182 * 24 * 3600 * 1000;
