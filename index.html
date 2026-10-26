@@ -359,6 +359,7 @@ function archive(t){
     <form id="alerte">
       <input id="alerte-ville" type="text" placeholder="Votre ville" aria-label="Votre ville" required>
       <input id="alerte-email" type="email" placeholder="Votre email" aria-label="Votre email" required>
+      <input name="site" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <button type="submit">Me prévenir</button>
     </form>
     <p class="merci" id="merci" aria-live="polite"></p>
@@ -564,9 +565,16 @@ document.getElementById('recherche').addEventListener('submit',e=>{
 });
 
 /* alertes */
-document.getElementById('alerte').addEventListener('submit',e=>{
-  e.preventDefault();
-  document.getElementById('merci').textContent = `C'est noté pour ${document.getElementById('alerte-ville').value.trim()}. (Maquette : aucun email n'est envoyé.)`;
+document.getElementById('alerte').addEventListener('submit',async e=>{
+  e.preventDefault(); const f=e.target, b=f.querySelector('button'), m=document.getElementById('merci');
+  const ville=document.getElementById('alerte-ville').value.trim(), email=document.getElementById('alerte-email').value.trim();
+  b.disabled=true; m.textContent='Envoi…';
+  try{
+    const r=await fetch('/api/inscription',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'alerte',email,ville,source:'accueil',site:f.site.value})});
+    if(!r.ok) throw 0;
+    m.textContent=`C'est noté pour ${ville}. Vous recevrez un email dès qu'un spectacle passe près de chez vous.`; f.reset();
+  }catch(err){ m.textContent="L'inscription n'a pas fonctionné. Réessayez dans un instant."; }
+  b.disabled=false;
 });
 
 /* historique : on double la piste pour un défilement continu */

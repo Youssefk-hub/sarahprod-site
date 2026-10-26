@@ -110,6 +110,7 @@
       <label>Nom *<input name="nom" required autocomplete="family-name"></label>
       <label>Prénom *<input name="prenom" required autocomplete="given-name"></label>
       <label class="large">Email *<input name="email" type="email" required autocomplete="email"></label>
+      <input name="site" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <label class="rgpd"><input type="checkbox" name="accord" required><span>J'accepte que Sarah Prod utilise ces informations pour me recontacter au sujet de la programmation de ses spectacles.</span></label>
       <button class="btn violet" type="submit">Voir les spectacles et les documents</button>
     </form>
@@ -135,8 +136,6 @@
     <p class="note">Une question sur un spectacle ou ses conditions ? <a href="/contact?sujet=Programmation">Contactez-nous</a> ou appelez le <a href="tel:+33782130742">07 82 13 07 42</a>.</p>
 </div></section>
 <script>
-/* Clé Web3Forms (gratuite, reçue par email) : les coordonnées des programmateurs arrivent alors dans la boîte de Serge. */
-const CLE_FORMULAIRE = "";
 const acces=document.getElementById('acces'), docs=document.getElementById('documents');
 function ouvrir(prenom){
   acces.hidden=true; docs.hidden=false;
@@ -149,13 +148,10 @@ if(deja) ouvrir(deja.prenom);
 document.getElementById('form-pro').addEventListener('submit',async e=>{
   e.preventDefault(); const f=e.target, b=f.querySelector('button'); b.disabled=true;
   const data={nom:f.nom.value.trim(), prenom:f.prenom.value.trim(), email:f.email.value.trim()};
-  if(CLE_FORMULAIRE){
-    try{
-      const r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
-        body:JSON.stringify({access_key:CLE_FORMULAIRE, subject:'Nouveau programmateur : '+data.prenom+' '+data.nom, from_name:'Site Sarah Prod', ...data})});
-      if(!r.ok) throw 0;
-    }catch(err){ document.getElementById('erreur').hidden=false; b.disabled=false; return; }
-  }
+  try{
+    const r=await fetch('/api/inscription',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'programmateur',source:'programmateurs',site:f.site.value,...data})});
+    if(!r.ok && r.status!==503) throw 0;
+  }catch(err){ document.getElementById('erreur').hidden=false; b.disabled=false; return; }
   try{ localStorage.setItem('sp-pro', JSON.stringify({prenom:data.prenom})); }catch(e){}
   ouvrir(data.prenom); window.scrollTo({top:document.getElementById('documents').offsetTop-10});
 });
