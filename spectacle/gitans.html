@@ -96,19 +96,21 @@ function secours(c1,c2){c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns=
   <div class="c">
     <h2>En images</h2>
     <div class="galerie" id="photos">
-      <button class="ph" type="button"><img src="/images/gitans/photo-06.jpg" alt="Gitan(s) Le Musical : La troupe chante" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/gitans/photo-01.jpg" alt="Gitan(s) Le Musical : Les danseuses de flamenco" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/gitans/photo-02.jpg" alt="Gitan(s) Le Musical : La procession dans la lumière" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/gitans/photo-08.jpg" alt="Gitan(s) Le Musical : Le mariage" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/gitans/photo-03.jpg" alt="Gitan(s) Le Musical : La tribu" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/gitans/photo-07.jpg" alt="Gitan(s) Le Musical : Autour du canapé" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/gitans/photo-04.jpg" alt="Gitan(s) Le Musical : Tiago et la Mame" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/gitans/photo-05.jpg" alt="Gitan(s) Le Musical : Le drame" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/gitans/photo-09.jpg" alt="Gitan(s) Le Musical : La fête" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/gitans/photo-10.jpg" alt="Gitan(s) Le Musical : Le deuil" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/gitans/photo-11.jpg" alt="Gitan(s) Le Musical : Sous le projecteur" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/gitans/photo-12.jpg" alt="Gitan(s) Le Musical : La danse et le balcon" loading="lazy"></button>
+      <button class="ph grande" type="button"><img src="/images/gitans/photo-06.jpg" alt="Gitan(s) Le Musical : La troupe chante" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/gitans/photo-01.jpg" alt="Gitan(s) Le Musical : Les danseuses de flamenco" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/gitans/photo-02.jpg" alt="Gitan(s) Le Musical : La procession dans la lumière" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/gitans/photo-08.jpg" alt="Gitan(s) Le Musical : Le mariage" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/gitans/photo-03.jpg" alt="Gitan(s) Le Musical : La tribu" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/gitans/photo-07.jpg" alt="Gitan(s) Le Musical : Autour du canapé" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/gitans/photo-04.jpg" alt="Gitan(s) Le Musical : Tiago et la Mame" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/gitans/photo-05.jpg" alt="Gitan(s) Le Musical : Le drame" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/gitans/photo-09.jpg" alt="Gitan(s) Le Musical : La fête" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/gitans/photo-10.jpg" alt="Gitan(s) Le Musical : Le deuil" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/gitans/photo-11.jpg" alt="Gitan(s) Le Musical : Sous le projecteur" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/gitans/photo-12.jpg" alt="Gitan(s) Le Musical : La danse et le balcon" loading="lazy"></button>
     </div>
+    <p class="compteur"><span>Faites glisser pour voir les photos</span><span><b id="ph-n">1</b> / 12</span></p>
+    <script>(function(){const g=document.getElementById("photos"),n=document.getElementById("ph-n");if(!g||!n)return;g.addEventListener("scroll",()=>{const w=g.firstElementChild.getBoundingClientRect().width+10;n.textContent=Math.min(g.children.length,Math.round(g.scrollLeft/w)+1);},{passive:true});})();</script>
     <p class="credit"></p>
 <div class="video" id="teaser">
       <video controls preload="metadata" playsinline poster="/images/gitans/photo-06.jpg" src="/videos/gitans-teaser.mp4">

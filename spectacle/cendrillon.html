@@ -95,14 +95,16 @@ function secours(c1,c2){c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns=
   <div class="c">
     <h2>En images</h2>
     <div class="galerie" id="photos">
-      <button class="ph" type="button"><img src="/images/cendrillon/photo-01.jpg" alt="Cendrillon Le Musical : Le bal au château" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/cendrillon/photo-04.jpg" alt="Cendrillon Le Musical : Cendrillon et sa pantoufle" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/cendrillon/photo-07.jpg" alt="Cendrillon Le Musical : Le Prince sur son trône" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/cendrillon/photo-06.jpg" alt="Cendrillon Le Musical : La cour chante au château" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/cendrillon/photo-02.jpg" alt="Cendrillon Le Musical : Au village" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/cendrillon/photo-05.jpg" alt="Cendrillon Le Musical : Les demi-sœurs reviennent des courses" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/cendrillon/photo-03.jpg" alt="Cendrillon Le Musical : Le bouquet de fleurs" loading="lazy"></button>
+      <button class="ph grande" type="button"><img src="/images/cendrillon/photo-01.jpg" alt="Cendrillon Le Musical : Le bal au château" loading="lazy"></button>
+      <button class="ph haute" type="button"><img src="/images/cendrillon/photo-04.jpg" alt="Cendrillon Le Musical : Cendrillon et sa pantoufle" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/cendrillon/photo-02.jpg" alt="Cendrillon Le Musical : Au village" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/cendrillon/photo-05.jpg" alt="Cendrillon Le Musical : Les demi-sœurs reviennent des courses" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/cendrillon/photo-03.jpg" alt="Cendrillon Le Musical : Le bouquet de fleurs" loading="lazy"></button>
+      <button class="ph moitie" type="button"><img src="/images/cendrillon/photo-07.jpg" alt="Cendrillon Le Musical : Le Prince sur son trône" loading="lazy"></button>
+      <button class="ph moitie" type="button"><img src="/images/cendrillon/photo-06.jpg" alt="Cendrillon Le Musical : La cour chante au château" loading="lazy"></button>
     </div>
+    <p class="compteur"><span>Faites glisser pour voir les photos</span><span><b id="ph-n">1</b> / 7</span></p>
+    <script>(function(){const g=document.getElementById("photos"),n=document.getElementById("ph-n");if(!g||!n)return;g.addEventListener("scroll",()=>{const w=g.firstElementChild.getBoundingClientRect().width+10;n.textContent=Math.min(g.children.length,Math.round(g.scrollLeft/w)+1);},{passive:true});})();</script>
     <p class="credit"></p>
 
   </div>

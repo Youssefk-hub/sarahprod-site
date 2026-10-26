@@ -125,14 +125,16 @@ function secours(c1,c2){c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns=
   <div class="c">
     <h2>En images</h2>
     <div class="galerie" id="photos">
-      <button class="ph" type="button"><img src="/images/flashdance/photo-01.jpg" alt="Flashdance The Musical : La troupe en bleus de travail à l&#x27;aciérie" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/flashdance/photo-02.jpg" alt="Flashdance The Musical : Alex sous la pluie, sur sa chaise" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/flashdance/photo-04.jpg" alt="Flashdance The Musical : L&#x27;audition devant le jury" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/flashdance/photo-06.jpg" alt="Flashdance The Musical : Alex chante" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/flashdance/photo-05.jpg" alt="Flashdance The Musical : Le grand saut de l&#x27;audition" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/flashdance/photo-03.jpg" alt="Flashdance The Musical : Tableau dans la fumée rose" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/flashdance/photo-07.jpg" alt="Flashdance The Musical : Chorégraphie autour du lit" loading="lazy"></button>
+      <button class="ph grande" type="button"><img src="/images/flashdance/photo-01.jpg" alt="Flashdance The Musical : La troupe en bleus de travail à l&#x27;aciérie" loading="lazy"></button>
+      <button class="ph haute" type="button"><img src="/images/flashdance/photo-06.jpg" alt="Flashdance The Musical : Alex chante" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/flashdance/photo-05.jpg" alt="Flashdance The Musical : Le grand saut de l&#x27;audition" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/flashdance/photo-03.jpg" alt="Flashdance The Musical : Tableau dans la fumée rose" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/flashdance/photo-07.jpg" alt="Flashdance The Musical : Chorégraphie autour du lit" loading="lazy"></button>
+      <button class="ph moitie" type="button"><img src="/images/flashdance/photo-02.jpg" alt="Flashdance The Musical : Alex sous la pluie, sur sa chaise" loading="lazy"></button>
+      <button class="ph moitie" type="button"><img src="/images/flashdance/photo-04.jpg" alt="Flashdance The Musical : L&#x27;audition devant le jury" loading="lazy"></button>
     </div>
+    <p class="compteur"><span>Faites glisser pour voir les photos</span><span><b id="ph-n">1</b> / 7</span></p>
+    <script>(function(){const g=document.getElementById("photos"),n=document.getElementById("ph-n");if(!g||!n)return;g.addEventListener("scroll",()=>{const w=g.firstElementChild.getBoundingClientRect().width+10;n.textContent=Math.min(g.children.length,Math.round(g.scrollLeft/w)+1);},{passive:true});})();</script>
     <p class="credit">Photos de scène prises au Zénith de Toulon, signées par le photographe.</p>
 <div class="video" id="teaser">
       <video controls preload="metadata" playsinline poster="/images/flashdance/photo-01.jpg" src="/videos/flashdance-teaser.mp4">

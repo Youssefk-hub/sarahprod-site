@@ -96,13 +96,15 @@ function secours(c1,c2){c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns=
   <div class="c">
     <h2>En images</h2>
     <div class="galerie" id="photos">
-      <button class="ph" type="button"><img src="/images/aladin/photo-06.jpg" alt="Aladin Le Musical : Le marché de la ville" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/aladin/photo-04.jpg" alt="Aladin Le Musical : La grande danse au palais" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/aladin/photo-03.jpg" alt="Aladin Le Musical : Le Sultan" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/aladin/photo-01.jpg" alt="Aladin Le Musical : Aladin et la troupe" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/aladin/photo-05.jpg" alt="Aladin Le Musical : Le génie Al" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/aladin/photo-02.jpg" alt="Aladin Le Musical : Le génie en costume argenté" loading="lazy"></button>
+      <button class="ph grande" type="button"><img src="/images/aladin/photo-06.jpg" alt="Aladin Le Musical : Le marché de la ville" loading="lazy"></button>
+      <button class="ph haute" type="button"><img src="/images/aladin/photo-05.jpg" alt="Aladin Le Musical : Le génie Al" loading="lazy"></button>
+      <button class="ph large" type="button"><img src="/images/aladin/photo-04.jpg" alt="Aladin Le Musical : La grande danse au palais" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/aladin/photo-01.jpg" alt="Aladin Le Musical : Aladin et la troupe" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/aladin/photo-02.jpg" alt="Aladin Le Musical : Le génie en costume argenté" loading="lazy"></button>
+      <button class="ph large" type="button"><img src="/images/aladin/photo-03.jpg" alt="Aladin Le Musical : Le Sultan" loading="lazy"></button>
     </div>
+    <p class="compteur"><span>Faites glisser pour voir les photos</span><span><b id="ph-n">1</b> / 6</span></p>
+    <script>(function(){const g=document.getElementById("photos"),n=document.getElementById("ph-n");if(!g||!n)return;g.addEventListener("scroll",()=>{const w=g.firstElementChild.getBoundingClientRect().width+10;n.textContent=Math.min(g.children.length,Math.round(g.scrollLeft/w)+1);},{passive:true});})();</script>
     <p class="credit"></p>
 <div class="video" id="teaser"><button class="yt" type="button" data-yt="ur0AUEj7Ugo" aria-label="Lancer le teaser sur YouTube"><img src="/images/aladin/photo-04.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="yt-note">Teaser · la vidéo se charge depuis YouTube</span></button></div>
   </div>

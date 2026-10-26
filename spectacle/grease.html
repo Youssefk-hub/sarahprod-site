@@ -91,23 +91,23 @@ function secours(c1,c2){c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns=
   <div class="c">
     <h2>En images</h2>
     <div class="galerie" id="photos">
-      <button class="ph" type="button"><img src="/images/grease/photo-10.jpg" alt="Grease Is The Word : Danny et Sandy au bal" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/grease/photo-08.jpg" alt="Grease Is The Word : Portée devant le décor de Rydell School" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/grease/photo-13.jpg" alt="Grease Is The Word : La troupe au salut" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/grease/photo-11.jpg" alt="Grease Is The Word : Sandy en cuir noir" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/grease/photo-12.jpg" alt="Grease Is The Word : Les T-Birds" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/grease/photo-14.jpg" alt="Grease Is The Word : La troupe en coulisses" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/grease/photo-09.jpg" alt="Grease Is The Word : Les T-Birds au garage" loading="lazy"></button>
+      <button class="ph grande" type="button"><img src="/images/grease/photo-10.jpg" alt="Grease Is The Word : Danny et Sandy au bal" loading="lazy"></button>
+      <button class="ph haute" type="button"><img src="/images/grease/photo-08.jpg" alt="Grease Is The Word : Portée devant le décor de Rydell School" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/grease/photo-13.jpg" alt="Grease Is The Word : La troupe au salut" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/grease/photo-11.jpg" alt="Grease Is The Word : Sandy en cuir noir" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/grease/photo-12.jpg" alt="Grease Is The Word : Les T-Birds" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/grease/photo-14.jpg" alt="Grease Is The Word : La troupe en coulisses" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/grease/photo-09.jpg" alt="Grease Is The Word : Les T-Birds au garage" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/grease/photo-01.jpg" alt="Grease Is The Word, photo de scène 1" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/grease/photo-02.jpg" alt="Grease Is The Word, photo de scène 2" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/grease/photo-03.jpg" alt="Grease Is The Word, photo de scène 3" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/grease/photo-04.jpg" alt="Grease Is The Word, photo de scène 4" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/grease/photo-05.jpg" alt="Grease Is The Word, photo de scène 5" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/grease/photo-06.jpg" alt="Grease Is The Word, photo de scène 6" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/grease/photo-07.jpg" alt="Grease Is The Word, photo de scène 7" loading="lazy"></button>
     </div>
-    <div class="vignettes">
-      <button class="ph" type="button"><img src="/images/grease/photo-01.jpg" alt="Grease Is The Word, photo de scène 1" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/grease/photo-02.jpg" alt="Grease Is The Word, photo de scène 2" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/grease/photo-03.jpg" alt="Grease Is The Word, photo de scène 3" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/grease/photo-04.jpg" alt="Grease Is The Word, photo de scène 4" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/grease/photo-05.jpg" alt="Grease Is The Word, photo de scène 5" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/grease/photo-06.jpg" alt="Grease Is The Word, photo de scène 6" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/grease/photo-07.jpg" alt="Grease Is The Word, photo de scène 7" loading="lazy"></button>
-    </div>
+    <p class="compteur"><span>Faites glisser pour voir les photos</span><span><b id="ph-n">1</b> / 14</span></p>
+    <script>(function(){const g=document.getElementById("photos"),n=document.getElementById("ph-n");if(!g||!n)return;g.addEventListener("scroll",()=>{const w=g.firstElementChild.getBoundingClientRect().width+10;n.textContent=Math.min(g.children.length,Math.round(g.scrollLeft/w)+1);},{passive:true});})();</script>
     <p class="credit">Certaines photos : crédit Bureau France pour La République des Pyrénées.</p>
 <div class="video" id="teaser">
       <video controls preload="metadata" playsinline poster="/images/grease/photo-10.jpg" src="https://sarahprod.com/videos/grease-teaser.mp4">

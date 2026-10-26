@@ -96,12 +96,14 @@ function secours(c1,c2){c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns=
   <div class="c">
     <h2>En images</h2>
     <div class="galerie" id="photos">
-      <button class="ph" type="button"><img src="/images/petite-sirene/photo-01.jpg" alt="La Petite Sirène le Musical : La Petite Sirène et le marin" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/petite-sirene/photo-03.jpg" alt="La Petite Sirène le Musical : La Petite Sirène" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/petite-sirene/photo-02.jpg" alt="La Petite Sirène le Musical : Les sœurs de la Petite Sirène" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/petite-sirene/photo-04.jpg" alt="La Petite Sirène le Musical : Le Roi de la Mer sur son trône" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/petite-sirene/photo-05.jpg" alt="La Petite Sirène le Musical : Les créatures des fonds marins" loading="lazy"></button>
+      <button class="ph grande" type="button"><img src="/images/petite-sirene/photo-01.jpg" alt="La Petite Sirène le Musical : La Petite Sirène et le marin" loading="lazy"></button>
+      <button class="ph haute" type="button"><img src="/images/petite-sirene/photo-03.jpg" alt="La Petite Sirène le Musical : La Petite Sirène" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/petite-sirene/photo-02.jpg" alt="La Petite Sirène le Musical : Les sœurs de la Petite Sirène" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/petite-sirene/photo-04.jpg" alt="La Petite Sirène le Musical : Le Roi de la Mer sur son trône" loading="lazy"></button>
+      <button class="ph " type="button"><img src="/images/petite-sirene/photo-05.jpg" alt="La Petite Sirène le Musical : Les créatures des fonds marins" loading="lazy"></button>
     </div>
+    <p class="compteur"><span>Faites glisser pour voir les photos</span><span><b id="ph-n">1</b> / 5</span></p>
+    <script>(function(){const g=document.getElementById("photos"),n=document.getElementById("ph-n");if(!g||!n)return;g.addEventListener("scroll",()=>{const w=g.firstElementChild.getBoundingClientRect().width+10;n.textContent=Math.min(g.children.length,Math.round(g.scrollLeft/w)+1);},{passive:true});})();</script>
     <p class="credit"></p>
 <div class="video" id="teaser"><button class="yt" type="button" data-yt="pUkRE1CeOkE" aria-label="Lancer le teaser sur YouTube"><img src="/images/petite-sirene/photo-02.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="yt-note">Teaser · la vidéo se charge depuis YouTube</span></button></div>
   </div>

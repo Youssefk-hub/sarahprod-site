@@ -100,9 +100,11 @@ function secours(c1,c2){c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns=
   <div class="c">
     <h2>En images</h2>
     <div class="galerie" id="photos">
-      <button class="ph" type="button"><img src="/images/dirty-dancing/photo-01.jpg" alt="Dirty Dancing Tribute Concert : Le band et les chanteurs sur scène, sous les projecteurs" loading="lazy"></button>
-      <button class="ph" type="button"><img src="/images/dirty-dancing/photo-02.jpg" alt="Dirty Dancing Tribute Concert : Le visuel du spectacle" loading="lazy"></button>
+      <button class="ph moitie haute" type="button"><img src="/images/dirty-dancing/photo-01.jpg" alt="Dirty Dancing Tribute Concert : Le band et les chanteurs sur scène, sous les projecteurs" loading="lazy"></button>
+      <button class="ph moitie haute" type="button"><img src="/images/dirty-dancing/photo-02.jpg" alt="Dirty Dancing Tribute Concert : Le visuel du spectacle" loading="lazy"></button>
     </div>
+    <p class="compteur"><span>Faites glisser pour voir les photos</span><span><b id="ph-n">1</b> / 2</span></p>
+    <script>(function(){const g=document.getElementById("photos"),n=document.getElementById("ph-n");if(!g||!n)return;g.addEventListener("scroll",()=>{const w=g.firstElementChild.getBoundingClientRect().width+10;n.textContent=Math.min(g.children.length,Math.round(g.scrollLeft/w)+1);},{passive:true});})();</script>
     <p class="credit">®, ™ &amp; © 2022 Lions Gate Entertainment Inc. All rights reserved.</p>
 <div class="video vertical" id="teaser">
       <video controls preload="metadata" playsinline poster="/images/dirty-dancing/photo-01.jpg" src="/videos/dirty-dancing-teaser.mp4">
