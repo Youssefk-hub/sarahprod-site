@@ -24,16 +24,6 @@
       "permanent": true
     },
     {
-      "source": "/qui-sommes-nous",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/contact",
-      "destination": "/",
-      "permanent": true
-    },
-    {
       "source": "/spectacle/:slug/",
       "destination": "/spectacle/:slug",
       "permanent": true
