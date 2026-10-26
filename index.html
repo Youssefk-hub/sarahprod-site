@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sarah Prod">
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Comédies musicales et spectacles en tournée en France, en Belgique et en Suisse : Flashdance, Grease, Dirty Dancing, ABBA, Michel Sardou et spectacles familiaux. 85 dates dans 56 villes jusqu'en 2028.">
+<meta name="description" content="Comédies musicales et spectacles en tournée en France, en Belgique et en Suisse : Flashdance The Musical, Grease Is The Word, Dirty Dancing Tribute Concert, Générations Connemara - Tribute Michel Sardou, Mama Mia ! Célébration ABBA et spectacles familiaux. 85 dates dans 56 villes jusqu'en 2028.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
@@ -110,9 +110,10 @@ img{display:block}
 .entete h2{font-family:var(--f-affiche);font-weight:900;text-transform:uppercase;font-size:clamp(46px,7vw,96px);line-height:.88;margin:0}
 .entete p{margin:0;max-width:42ch;color:var(--gris);font-size:16px}
 .liste{border-top:3px solid var(--encre)}
-.d{display:grid;grid-template-columns:175px minmax(0,1.1fr) minmax(0,1fr) auto;gap:20px;align-items:center;padding:20px 18px;border-bottom:1px solid var(--encre);position:relative;transition:background .14s,color .14s}
+.d{display:grid;grid-template-columns:200px minmax(0,1.1fr) minmax(0,1fr) auto;gap:20px;align-items:center;padding:20px 18px;border-bottom:1px solid var(--encre);position:relative;transition:background .14s,color .14s}
 .d:hover,.d:focus-visible{background:var(--violet);color:var(--blanc);outline:none}
 .jour{font-family:var(--f-affiche);font-weight:900;font-size:40px;line-height:.9;white-space:nowrap;text-transform:uppercase}
+.jour em{font-style:normal;display:block;font-size:.78em;margin-top:2px}
 .jour span{display:table;font-family:var(--f-texte);font-weight:800;font-size:13px;letter-spacing:1.2px;margin-top:6px;padding:2px 8px;background:var(--violet);color:var(--blanc)}
 .d:hover .jour span,.d:focus-visible .jour span{background:var(--etoile);color:var(--nuit)}
 .lieu{font-size:20px;font-weight:700;min-width:0}
@@ -186,7 +187,8 @@ footer a:hover{color:var(--etoile)}
 .prod .cadre-img{position:relative;aspect-ratio:1200/630;max-width:100%;overflow:hidden;background:var(--violet-fonce)}
 .prod img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
 .prod:hover img{transform:scale(1.05)}
-.prod .annees{position:absolute;left:12px;bottom:12px;background:var(--etoile);color:var(--nuit);font-family:var(--f-affiche);font-weight:800;font-size:18px;line-height:1;padding:6px 10px;font-variant-numeric:tabular-nums}
+.prod:hover .annees,.prod:focus-visible .annees{background:var(--etoile);color:var(--nuit)}
+.prod .annees{position:absolute;left:12px;bottom:12px;background:var(--violet);color:var(--blanc);transition:background .14s,color .14s;font-family:var(--f-affiche);font-weight:800;font-size:18px;line-height:1;padding:6px 10px;font-variant-numeric:tabular-nums}
 .prod .annees.flou{background:var(--blanc);font-family:var(--f-texte);font-size:12px;font-weight:700;padding:7px 10px}
 .prod .txt{padding:16px 18px 20px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
 .prod h3{font-family:var(--f-affiche);font-weight:800;text-transform:uppercase;font-size:24px;line-height:.98;margin:0}
@@ -196,6 +198,7 @@ footer a:hover{color:var(--etoile)}
   .menu a:not(.pro){display:none}
   .d{grid-template-columns:118px minmax(0,1fr);gap:8px 16px;padding:16px 4px}
   .jour{font-size:26px}
+  .jour em{display:block}
   .titre-sp,.resa{grid-column:2}
   .resa{justify-self:start}
   .vign{display:none}
@@ -245,7 +248,7 @@ function archive(t){
 
   <div class="scene g">
     <h1>La comédie musicale<span class="l2">vient à vous</span></h1>
-    <p class="sous">Flashdance, Grease, Dirty Dancing, Michel Sardou, ABBA et des contes pour toute la famille. Onze spectacles en tournée en France, en Belgique et en Suisse.</p>
+    <p class="sous">Flashdance The Musical, Grease Is The Word, Dirty Dancing Tribute Concert, Générations Connemara - Tribute Michel Sardou, Mama Mia ! Célébration ABBA et des contes pour toute la famille. Onze spectacles en tournée en France, en Belgique et en Suisse.</p>
     <form class="recherche" id="recherche" role="search">
       <label for="ville">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z" stroke="#5B3CD5" stroke-width="2.2"/><circle cx="12" cy="10" r="2.6" fill="#5B3CD5"/></svg>
@@ -387,91 +390,91 @@ const SHOWS = [
   {slug:"pinocchio",     t:"Pinocchio Le Voyage Musical", t1:"Pinocchio", t2:"Le Voyage Musical",cat:"Spectacle familial",c1:"#6B3410", c2:"#E0A030"}
 ];
 const DATES = [
-  {"j": "13", "m": "nov", "a": "2026", "ville": "Liège", "salle": "Le Forum", "s": "grease", "l": ""},
-  {"j": "14", "m": "nov", "a": "2026", "ville": "Mons", "salle": "Théâtre Royal", "s": "grease", "l": "https://my.weezevent.com/grease-is-the-word-mons"},
-  {"j": "27", "m": "nov", "a": "2026", "ville": "Saint-Quentin", "salle": "Le Splendid", "s": "grease", "l": "https://my.weezevent.com/grease-is-the-word-saint-quentin"},
-  {"j": "28", "m": "nov", "a": "2026", "ville": "Compiègne", "salle": "Le Tigre", "s": "grease", "l": "https://my.weezevent.com/grease-is-the-word-compiegne"},
-  {"j": "29", "m": "janv", "a": "2027", "ville": "Évry", "salle": "L'Agora", "s": "flashdance", "l": "https://my.weezevent.com/flashdance-the-musical-evry"},
-  {"j": "30", "m": "janv", "a": "2027", "ville": "Melun", "salle": "L'Escale", "s": "dirty-dancing", "l": "https://my.weezevent.com/dirty-dancing-tribute-concert-melun"},
-  {"j": "31", "m": "janv", "a": "2027", "ville": "Clermont-Ferrand", "salle": "Zénith", "s": "flashdance", "l": "https://my.weezevent.com/flashdance-the-musical-clermont-ferrand"},
-  {"j": "05", "m": "fév", "a": "2027", "ville": "Toulon", "salle": "Zénith", "s": "flashdance", "l": "https://my.weezevent.com/flashdance-the-musical-toulon"},
-  {"j": "06", "m": "fév", "a": "2027", "ville": "Montpellier", "salle": "Zénith", "s": "flashdance", "l": ""},
-  {"j": "06", "m": "fév", "a": "2027", "ville": "Sanary-sur-Mer", "salle": "Galli", "s": "dirty-dancing", "l": ""},
-  {"j": "07", "m": "fév", "a": "2027", "ville": "Toulouse", "salle": "Casino · 14h30", "s": "flashdance", "l": ""},
-  {"j": "07", "m": "fév", "a": "2027", "ville": "Toulouse", "salle": "Casino · 18h00", "s": "flashdance", "l": ""},
-  {"j": "12", "m": "fév", "a": "2027", "ville": "Montélimar", "salle": "Palais des Congrès", "s": "flashdance", "l": ""},
-  {"j": "13", "m": "fév", "a": "2027", "ville": "Mâcon", "salle": "Le Spot", "s": "flashdance", "l": ""},
-  {"j": "14", "m": "fév", "a": "2027", "ville": "Bordeaux", "salle": "Arkéa Arena", "s": "flashdance", "l": ""},
-  {"j": "18", "m": "fév", "a": "2027", "ville": "Lille", "salle": "Palais des Congrès", "s": "flashdance", "l": ""},
-  {"j": "19", "m": "fév", "a": "2027", "ville": "Beauvais", "salle": "Elispace", "s": "flashdance", "l": ""},
-  {"j": "20", "m": "fév", "a": "2027", "ville": "Saint-Omer", "salle": "Scénéo", "s": "flashdance", "l": ""},
-  {"j": "21", "m": "fév", "a": "2027", "ville": "Compiègne", "salle": "Le Tigre", "s": "flashdance", "l": "https://my.weezevent.com/flashdance-the-musical-compiegne"},
-  {"j": "26", "m": "fév", "a": "2027", "ville": "Rennes", "salle": "Le Liberté", "s": "flashdance", "l": ""},
-  {"j": "28", "m": "fév", "a": "2027", "ville": "Nantes", "salle": "Zénith", "s": "flashdance", "l": ""},
-  {"j": "06", "m": "mars", "a": "2027", "ville": "Orléans", "salle": "Zénith", "s": "flashdance", "l": ""},
-  {"j": "07", "m": "mars", "a": "2027", "ville": "Paris", "salle": "Salle Pleyel", "s": "flashdance", "l": ""},
-  {"j": "18", "m": "mars", "a": "2027", "ville": "Strasbourg", "salle": "Zénith", "s": "flashdance", "l": ""},
-  {"j": "19", "m": "mars", "a": "2027", "ville": "Dunkerque", "salle": "Kursaal", "s": "flashdance", "l": ""},
-  {"j": "20", "m": "mars", "a": "2027", "ville": "Amnéville", "salle": "Galaxie", "s": "flashdance", "l": ""},
-  {"j": "20", "m": "mars", "a": "2027", "ville": "Péronne", "salle": "Espace Mac Orlan", "s": "dirty-dancing", "l": ""},
-  {"j": "21", "m": "mars", "a": "2027", "ville": "Compiègne", "salle": "Le Tigre", "s": "dirty-dancing", "l": "https://my.weezevent.com/dirty-dancing-tribute-concert-compiegne"},
-  {"j": "27", "m": "mars", "a": "2027", "ville": "Enghien-les-Bains", "salle": "Casino", "s": "flashdance", "l": ""},
-  {"j": "28", "m": "mars", "a": "2027", "ville": "Le Touquet", "salle": "Casino", "s": "flashdance", "l": ""},
-  {"j": "01", "m": "avr", "a": "2027", "ville": "Brest", "salle": "Zénith", "s": "flashdance", "l": ""},
-  {"j": "02", "m": "avr", "a": "2027", "ville": "Mouilleron-le-Captif", "salle": "Vendéespace", "s": "flashdance", "l": ""},
-  {"j": "02", "m": "avr", "a": "2027", "ville": "Bordeaux", "salle": "", "s": "dirty-dancing", "l": ""},
-  {"j": "03", "m": "avr", "a": "2027", "ville": "Niort", "salle": "L'Acclameur", "s": "flashdance", "l": ""},
-  {"j": "03", "m": "avr", "a": "2027", "ville": "Saint-Grégoire", "salle": "EMC2", "s": "dirty-dancing", "l": ""},
-  {"j": "04", "m": "avr", "a": "2027", "ville": "Caen", "salle": "Zénith", "s": "flashdance", "l": ""},
-  {"j": "08", "m": "avr", "a": "2027", "ville": "Châteauneuf-sur-Isère", "salle": "O Lac", "s": "dirty-dancing", "l": ""},
-  {"j": "10", "m": "avr", "a": "2027", "ville": "Nice", "salle": "Nikaïa", "s": "flashdance", "l": ""},
-  {"j": "11", "m": "avr", "a": "2027", "ville": "Marseille", "salle": "Le Dôme", "s": "flashdance", "l": ""},
-  {"j": "15", "m": "avr", "a": "2027", "ville": "Grenoble", "salle": "Auditorium", "s": "flashdance", "l": ""},
-  {"j": "16", "m": "avr", "a": "2027", "ville": "Lyon", "salle": "Amphithéâtre", "s": "flashdance", "l": ""},
-  {"j": "16", "m": "avr", "a": "2027", "ville": "Beauvais", "salle": "Elispace", "s": "dirty-dancing", "l": ""},
-  {"j": "17", "m": "avr", "a": "2027", "ville": "Saint-Étienne", "salle": "Zénith", "s": "flashdance", "l": ""},
-  {"j": "17", "m": "avr", "a": "2027", "ville": "Arras", "salle": "Casino, La Grand'Scène", "s": "dirty-dancing", "l": ""},
-  {"j": "18", "m": "avr", "a": "2027", "ville": "Annecy", "salle": "Arcadium", "s": "flashdance", "l": ""},
-  {"j": "18", "m": "avr", "a": "2027", "ville": "Lille", "salle": "Théâtre Sébastopol", "s": "dirty-dancing", "l": ""},
-  {"j": "23", "m": "avr", "a": "2027", "ville": "Roanne", "salle": "Le Scarabée", "s": "flashdance", "l": ""},
-  {"j": "25", "m": "avr", "a": "2027", "ville": "Biarritz", "salle": "Gare du Midi", "s": "flashdance", "l": ""},
-  {"j": "13", "m": "janv", "a": "2028", "ville": "Évry", "salle": "L'Agora · avant-première", "s": "sardou", "l": ""},
-  {"j": "14", "m": "janv", "a": "2028", "ville": "Saint-Quentin", "salle": "Le Splendid", "s": "sardou", "l": ""},
-  {"j": "15", "m": "janv", "a": "2028", "ville": "Lille", "salle": "Théâtre Sébastopol", "s": "sardou", "l": ""},
-  {"j": "16", "m": "janv", "a": "2028", "ville": "Boulogne-sur-Mer", "salle": "L'Embarcadère", "s": "sardou", "l": ""},
-  {"j": "22", "m": "janv", "a": "2028", "ville": "Troyes", "salle": "Le Cube", "s": "sardou", "l": ""},
-  {"j": "23", "m": "janv", "a": "2028", "ville": "Amiens", "salle": "Zénith", "s": "sardou", "l": ""},
-  {"j": "29", "m": "janv", "a": "2028", "ville": "Mouilleron-le-Captif", "salle": "Vendéespace", "s": "sardou", "l": ""},
-  {"j": "30", "m": "janv", "a": "2028", "ville": "Niort", "salle": "L'Acclameur", "s": "sardou", "l": ""},
-  {"j": "12", "m": "fév", "a": "2028", "ville": "Tours", "salle": "Le Vinci, Palais des Congrès", "s": "sardou", "l": ""},
-  {"j": "13", "m": "fév", "a": "2028", "ville": "Poitiers", "salle": "Palais des Congrès du Futuroscope", "s": "sardou", "l": ""},
-  {"j": "18", "m": "fév", "a": "2028", "ville": "Rennes", "salle": "Le Liberté", "s": "sardou", "l": ""},
-  {"j": "19", "m": "fév", "a": "2028", "ville": "Saint-Brieuc", "salle": "L'Hermione", "s": "sardou", "l": ""},
-  {"j": "25", "m": "fév", "a": "2028", "ville": "Orléans", "salle": "Zénith", "s": "sardou", "l": ""},
-  {"j": "04", "m": "mars", "a": "2028", "ville": "Le Mans", "salle": "Le Forum", "s": "sardou", "l": ""},
-  {"j": "05", "m": "mars", "a": "2028", "ville": "Le Havre", "salle": "Le Carré des Docks", "s": "sardou", "l": ""},
-  {"j": "10", "m": "mars", "a": "2028", "ville": "Avignon", "salle": "Confluences", "s": "sardou", "l": ""},
-  {"j": "11", "m": "mars", "a": "2028", "ville": "Châteauneuf-sur-Isère", "salle": "O Lac", "s": "sardou", "l": ""},
-  {"j": "17", "m": "mars", "a": "2028", "ville": "Pau", "salle": "Zénith", "s": "sardou", "l": ""},
-  {"j": "18", "m": "mars", "a": "2028", "ville": "Bordeaux", "salle": "Théâtre Fémina", "s": "sardou", "l": ""},
-  {"j": "23", "m": "mars", "a": "2028", "ville": "Bourg-en-Bresse", "salle": "Ekinox", "s": "sardou", "l": ""},
-  {"j": "24", "m": "mars", "a": "2028", "ville": "Roanne", "salle": "Le Scarabée", "s": "sardou", "l": ""},
-  {"j": "25", "m": "mars", "a": "2028", "ville": "Annecy", "salle": "Arcadium", "s": "sardou", "l": ""},
-  {"j": "26", "m": "mars", "a": "2028", "ville": "Grenoble", "salle": "Summum", "s": "sardou", "l": ""},
-  {"j": "31", "m": "mars", "a": "2028", "ville": "Montélimar", "salle": "Palais des Congrès", "s": "sardou", "l": ""},
-  {"j": "01", "m": "avr", "a": "2028", "ville": "Lyon", "salle": "Amphithéâtre", "s": "sardou", "l": ""},
-  {"j": "02", "m": "avr", "a": "2028", "ville": "Toulouse", "salle": "Casino Barrière · séance 1", "s": "sardou", "l": ""},
-  {"j": "02", "m": "avr", "a": "2028", "ville": "Toulouse", "salle": "Casino Barrière · séance 2", "s": "sardou", "l": ""},
-  {"j": "07", "m": "avr", "a": "2028", "ville": "Nice", "salle": "Nikaïa", "s": "sardou", "l": ""},
-  {"j": "08", "m": "avr", "a": "2028", "ville": "Toulon", "salle": "Zénith", "s": "sardou", "l": ""},
-  {"j": "09", "m": "avr", "a": "2028", "ville": "Marseille", "salle": "Le Dôme", "s": "sardou", "l": ""},
-  {"j": "15", "m": "avr", "a": "2028", "ville": "Genève", "salle": "", "s": "sardou", "l": ""},
-  {"j": "20", "m": "avr", "a": "2028", "ville": "Nantes", "salle": "Zénith", "s": "sardou", "l": ""},
-  {"j": "21", "m": "avr", "a": "2028", "ville": "Caen", "salle": "Zénith", "s": "sardou", "l": ""},
-  {"j": "22", "m": "avr", "a": "2028", "ville": "Rouen", "salle": "Zénith", "s": "sardou", "l": ""},
-  {"j": "23", "m": "avr", "a": "2028", "ville": "Beauvais", "salle": "Elispace", "s": "sardou", "l": ""},
-  {"j": "28", "m": "avr", "a": "2028", "ville": "Perpignan", "salle": "Auditorium Charles Trenet", "s": "sardou", "l": ""},
-  {"j": "29", "m": "avr", "a": "2028", "ville": "Biarritz", "salle": "Gare du Midi", "s": "sardou", "l": ""}
+  {"j": "13", "m": "Novembre", "a": "2026", "ville": "Liège", "salle": "Le Forum", "s": "grease", "l": ""},
+  {"j": "14", "m": "Novembre", "a": "2026", "ville": "Mons", "salle": "Théâtre Royal", "s": "grease", "l": "https://my.weezevent.com/grease-is-the-word-mons"},
+  {"j": "27", "m": "Novembre", "a": "2026", "ville": "Saint-Quentin", "salle": "Le Splendid", "s": "grease", "l": "https://my.weezevent.com/grease-is-the-word-saint-quentin"},
+  {"j": "28", "m": "Novembre", "a": "2026", "ville": "Compiègne", "salle": "Le Tigre", "s": "grease", "l": "https://my.weezevent.com/grease-is-the-word-compiegne"},
+  {"j": "29", "m": "Janvier", "a": "2027", "ville": "Évry", "salle": "L'Agora", "s": "flashdance", "l": "https://my.weezevent.com/flashdance-the-musical-evry"},
+  {"j": "30", "m": "Janvier", "a": "2027", "ville": "Melun", "salle": "L'Escale", "s": "dirty-dancing", "l": "https://my.weezevent.com/dirty-dancing-tribute-concert-melun"},
+  {"j": "31", "m": "Janvier", "a": "2027", "ville": "Clermont-Ferrand", "salle": "Zénith", "s": "flashdance", "l": "https://my.weezevent.com/flashdance-the-musical-clermont-ferrand"},
+  {"j": "05", "m": "Février", "a": "2027", "ville": "Toulon", "salle": "Zénith", "s": "flashdance", "l": "https://my.weezevent.com/flashdance-the-musical-toulon"},
+  {"j": "06", "m": "Février", "a": "2027", "ville": "Montpellier", "salle": "Zénith", "s": "flashdance", "l": ""},
+  {"j": "06", "m": "Février", "a": "2027", "ville": "Sanary-sur-Mer", "salle": "Galli", "s": "dirty-dancing", "l": ""},
+  {"j": "07", "m": "Février", "a": "2027", "ville": "Toulouse", "salle": "Casino · 14h30", "s": "flashdance", "l": ""},
+  {"j": "07", "m": "Février", "a": "2027", "ville": "Toulouse", "salle": "Casino · 18h00", "s": "flashdance", "l": ""},
+  {"j": "12", "m": "Février", "a": "2027", "ville": "Montélimar", "salle": "Palais des Congrès", "s": "flashdance", "l": ""},
+  {"j": "13", "m": "Février", "a": "2027", "ville": "Mâcon", "salle": "Le Spot", "s": "flashdance", "l": ""},
+  {"j": "14", "m": "Février", "a": "2027", "ville": "Bordeaux", "salle": "Arkéa Arena", "s": "flashdance", "l": ""},
+  {"j": "18", "m": "Février", "a": "2027", "ville": "Lille", "salle": "Palais des Congrès", "s": "flashdance", "l": ""},
+  {"j": "19", "m": "Février", "a": "2027", "ville": "Beauvais", "salle": "Elispace", "s": "flashdance", "l": ""},
+  {"j": "20", "m": "Février", "a": "2027", "ville": "Saint-Omer", "salle": "Scénéo", "s": "flashdance", "l": ""},
+  {"j": "21", "m": "Février", "a": "2027", "ville": "Compiègne", "salle": "Le Tigre", "s": "flashdance", "l": "https://my.weezevent.com/flashdance-the-musical-compiegne"},
+  {"j": "26", "m": "Février", "a": "2027", "ville": "Rennes", "salle": "Le Liberté", "s": "flashdance", "l": ""},
+  {"j": "28", "m": "Février", "a": "2027", "ville": "Nantes", "salle": "Zénith", "s": "flashdance", "l": ""},
+  {"j": "06", "m": "Mars", "a": "2027", "ville": "Orléans", "salle": "Zénith", "s": "flashdance", "l": ""},
+  {"j": "07", "m": "Mars", "a": "2027", "ville": "Paris", "salle": "Salle Pleyel", "s": "flashdance", "l": ""},
+  {"j": "18", "m": "Mars", "a": "2027", "ville": "Strasbourg", "salle": "Zénith", "s": "flashdance", "l": ""},
+  {"j": "19", "m": "Mars", "a": "2027", "ville": "Dunkerque", "salle": "Kursaal", "s": "flashdance", "l": ""},
+  {"j": "20", "m": "Mars", "a": "2027", "ville": "Amnéville", "salle": "Galaxie", "s": "flashdance", "l": ""},
+  {"j": "20", "m": "Mars", "a": "2027", "ville": "Péronne", "salle": "Espace Mac Orlan", "s": "dirty-dancing", "l": ""},
+  {"j": "21", "m": "Mars", "a": "2027", "ville": "Compiègne", "salle": "Le Tigre", "s": "dirty-dancing", "l": "https://my.weezevent.com/dirty-dancing-tribute-concert-compiegne"},
+  {"j": "27", "m": "Mars", "a": "2027", "ville": "Enghien-les-Bains", "salle": "Casino", "s": "flashdance", "l": ""},
+  {"j": "28", "m": "Mars", "a": "2027", "ville": "Le Touquet", "salle": "Casino", "s": "flashdance", "l": ""},
+  {"j": "01", "m": "Avril", "a": "2027", "ville": "Brest", "salle": "Zénith", "s": "flashdance", "l": ""},
+  {"j": "02", "m": "Avril", "a": "2027", "ville": "Mouilleron-le-Captif", "salle": "Vendéespace", "s": "flashdance", "l": ""},
+  {"j": "02", "m": "Avril", "a": "2027", "ville": "Bordeaux", "salle": "", "s": "dirty-dancing", "l": ""},
+  {"j": "03", "m": "Avril", "a": "2027", "ville": "Niort", "salle": "L'Acclameur", "s": "flashdance", "l": ""},
+  {"j": "03", "m": "Avril", "a": "2027", "ville": "Saint-Grégoire", "salle": "EMC2", "s": "dirty-dancing", "l": ""},
+  {"j": "04", "m": "Avril", "a": "2027", "ville": "Caen", "salle": "Zénith", "s": "flashdance", "l": ""},
+  {"j": "08", "m": "Avril", "a": "2027", "ville": "Châteauneuf-sur-Isère", "salle": "O Lac", "s": "dirty-dancing", "l": ""},
+  {"j": "10", "m": "Avril", "a": "2027", "ville": "Nice", "salle": "Nikaïa", "s": "flashdance", "l": ""},
+  {"j": "11", "m": "Avril", "a": "2027", "ville": "Marseille", "salle": "Le Dôme", "s": "flashdance", "l": ""},
+  {"j": "15", "m": "Avril", "a": "2027", "ville": "Grenoble", "salle": "Auditorium", "s": "flashdance", "l": ""},
+  {"j": "16", "m": "Avril", "a": "2027", "ville": "Lyon", "salle": "Amphithéâtre", "s": "flashdance", "l": ""},
+  {"j": "16", "m": "Avril", "a": "2027", "ville": "Beauvais", "salle": "Elispace", "s": "dirty-dancing", "l": ""},
+  {"j": "17", "m": "Avril", "a": "2027", "ville": "Saint-Étienne", "salle": "Zénith", "s": "flashdance", "l": ""},
+  {"j": "17", "m": "Avril", "a": "2027", "ville": "Arras", "salle": "Casino, La Grand'Scène", "s": "dirty-dancing", "l": ""},
+  {"j": "18", "m": "Avril", "a": "2027", "ville": "Annecy", "salle": "Arcadium", "s": "flashdance", "l": ""},
+  {"j": "18", "m": "Avril", "a": "2027", "ville": "Lille", "salle": "Théâtre Sébastopol", "s": "dirty-dancing", "l": ""},
+  {"j": "23", "m": "Avril", "a": "2027", "ville": "Roanne", "salle": "Le Scarabée", "s": "flashdance", "l": ""},
+  {"j": "25", "m": "Avril", "a": "2027", "ville": "Biarritz", "salle": "Gare du Midi", "s": "flashdance", "l": ""},
+  {"j": "13", "m": "Janvier", "a": "2028", "ville": "Évry", "salle": "L'Agora · avant-première", "s": "sardou", "l": ""},
+  {"j": "14", "m": "Janvier", "a": "2028", "ville": "Saint-Quentin", "salle": "Le Splendid", "s": "sardou", "l": ""},
+  {"j": "15", "m": "Janvier", "a": "2028", "ville": "Lille", "salle": "Théâtre Sébastopol", "s": "sardou", "l": ""},
+  {"j": "16", "m": "Janvier", "a": "2028", "ville": "Boulogne-sur-Mer", "salle": "L'Embarcadère", "s": "sardou", "l": ""},
+  {"j": "22", "m": "Janvier", "a": "2028", "ville": "Troyes", "salle": "Le Cube", "s": "sardou", "l": ""},
+  {"j": "23", "m": "Janvier", "a": "2028", "ville": "Amiens", "salle": "Zénith", "s": "sardou", "l": ""},
+  {"j": "29", "m": "Janvier", "a": "2028", "ville": "Mouilleron-le-Captif", "salle": "Vendéespace", "s": "sardou", "l": ""},
+  {"j": "30", "m": "Janvier", "a": "2028", "ville": "Niort", "salle": "L'Acclameur", "s": "sardou", "l": ""},
+  {"j": "12", "m": "Février", "a": "2028", "ville": "Tours", "salle": "Le Vinci, Palais des Congrès", "s": "sardou", "l": ""},
+  {"j": "13", "m": "Février", "a": "2028", "ville": "Poitiers", "salle": "Palais des Congrès du Futuroscope", "s": "sardou", "l": ""},
+  {"j": "18", "m": "Février", "a": "2028", "ville": "Rennes", "salle": "Le Liberté", "s": "sardou", "l": ""},
+  {"j": "19", "m": "Février", "a": "2028", "ville": "Saint-Brieuc", "salle": "L'Hermione", "s": "sardou", "l": ""},
+  {"j": "25", "m": "Février", "a": "2028", "ville": "Orléans", "salle": "Zénith", "s": "sardou", "l": ""},
+  {"j": "04", "m": "Mars", "a": "2028", "ville": "Le Mans", "salle": "Le Forum", "s": "sardou", "l": ""},
+  {"j": "05", "m": "Mars", "a": "2028", "ville": "Le Havre", "salle": "Le Carré des Docks", "s": "sardou", "l": ""},
+  {"j": "10", "m": "Mars", "a": "2028", "ville": "Avignon", "salle": "Confluences", "s": "sardou", "l": ""},
+  {"j": "11", "m": "Mars", "a": "2028", "ville": "Châteauneuf-sur-Isère", "salle": "O Lac", "s": "sardou", "l": ""},
+  {"j": "17", "m": "Mars", "a": "2028", "ville": "Pau", "salle": "Zénith", "s": "sardou", "l": ""},
+  {"j": "18", "m": "Mars", "a": "2028", "ville": "Bordeaux", "salle": "Théâtre Fémina", "s": "sardou", "l": ""},
+  {"j": "23", "m": "Mars", "a": "2028", "ville": "Bourg-en-Bresse", "salle": "Ekinox", "s": "sardou", "l": ""},
+  {"j": "24", "m": "Mars", "a": "2028", "ville": "Roanne", "salle": "Le Scarabée", "s": "sardou", "l": ""},
+  {"j": "25", "m": "Mars", "a": "2028", "ville": "Annecy", "salle": "Arcadium", "s": "sardou", "l": ""},
+  {"j": "26", "m": "Mars", "a": "2028", "ville": "Grenoble", "salle": "Summum", "s": "sardou", "l": ""},
+  {"j": "31", "m": "Mars", "a": "2028", "ville": "Montélimar", "salle": "Palais des Congrès", "s": "sardou", "l": ""},
+  {"j": "01", "m": "Avril", "a": "2028", "ville": "Lyon", "salle": "Amphithéâtre", "s": "sardou", "l": ""},
+  {"j": "02", "m": "Avril", "a": "2028", "ville": "Toulouse", "salle": "Casino Barrière · séance 1", "s": "sardou", "l": ""},
+  {"j": "02", "m": "Avril", "a": "2028", "ville": "Toulouse", "salle": "Casino Barrière · séance 2", "s": "sardou", "l": ""},
+  {"j": "07", "m": "Avril", "a": "2028", "ville": "Nice", "salle": "Nikaïa", "s": "sardou", "l": ""},
+  {"j": "08", "m": "Avril", "a": "2028", "ville": "Toulon", "salle": "Zénith", "s": "sardou", "l": ""},
+  {"j": "09", "m": "Avril", "a": "2028", "ville": "Marseille", "salle": "Le Dôme", "s": "sardou", "l": ""},
+  {"j": "15", "m": "Avril", "a": "2028", "ville": "Genève", "salle": "", "s": "sardou", "l": ""},
+  {"j": "20", "m": "Avril", "a": "2028", "ville": "Nantes", "salle": "Zénith", "s": "sardou", "l": ""},
+  {"j": "21", "m": "Avril", "a": "2028", "ville": "Caen", "salle": "Zénith", "s": "sardou", "l": ""},
+  {"j": "22", "m": "Avril", "a": "2028", "ville": "Rouen", "salle": "Zénith", "s": "sardou", "l": ""},
+  {"j": "23", "m": "Avril", "a": "2028", "ville": "Beauvais", "salle": "Elispace", "s": "sardou", "l": ""},
+  {"j": "28", "m": "Avril", "a": "2028", "ville": "Perpignan", "salle": "Auditorium Charles Trenet", "s": "sardou", "l": ""},
+  {"j": "29", "m": "Avril", "a": "2028", "ville": "Biarritz", "salle": "Gare du Midi", "s": "sardou", "l": ""}
 ];
 const find = s => SHOWS.find(x => x.slug === s);
 const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
@@ -511,7 +514,7 @@ const liste = document.getElementById('liste');
 function dates(items){
   liste.innerHTML = items.map(d=>{ const sh=find(d.s); return `
     <a class="d" href="${d.l||(PAGES.includes(d.s)?'/spectacle/'+d.s+'#dates':'#')}"${d.l?' target="_blank" rel="noopener"':''}>
-      <div class="jour">${d.j} ${d.m}<span>${d.a}</span></div>
+      <div class="jour">${d.j} <em>${d.m}</em><span>${d.a}</span></div>
       <div class="lieu">${d.ville}<small>${d.salle}</small></div>
       <div class="titre-sp">${esc(sh.t1)}<small>${esc(sh.t2)}</small></div>
       <img class="vign" src="https://sarahprod.com/og/${sh.slug}.jpg" onerror="this.onerror=null;this.src=affiche(find('${sh.slug}'))" alt="">
@@ -537,9 +540,9 @@ function murAff(f){
 }
 const PHRASES = {
   "tous": "Du rock'n'roll des années 50 aux contes pour les enfants. Passez sur une affiche pour la redresser.",
-  "Comédie musicale": "Grease Is The Word, Flashdance et Gitan(s) : des histoires que vous connaissez, chantées et dansées sur scène.",
-  "Concert": "Dirty Dancing, Michel Sardou et ABBA : les tubes d'une génération, repris en concert près de chez vous.",
-  "Spectacle familial": "Le Livre de la Jungle, Cendrillon, Aladin, La Petite Sirène et Pinocchio : des contes en musique à partager en famille."
+  "Comédie musicale": "Grease Is The Word, Flashdance The Musical et Gitan(s) Le Musical : des histoires que vous connaissez, chantées et dansées sur scène.",
+  "Concert": "Dirty Dancing Tribute Concert, Générations Connemara - Tribute Michel Sardou et Mama Mia ! Célébration ABBA : les tubes d'une génération, repris en concert près de chez vous.",
+  "Spectacle familial": "Le Livre de la Jungle le Musical, Cendrillon Le Musical, Aladin Le Musical, La Petite Sirène le Musical et Pinocchio Le Voyage Musical : des contes en musique à partager en famille."
 };
 murAff('tous');
 document.querySelectorAll('.filtres button').forEach(b=>b.addEventListener('click',()=>{

@@ -35,7 +35,7 @@ img{display:block;max-width:100%}
 .scene{min-height:min(720px,80vh);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(28px,5vw,72px);align-items:center;padding-block:clamp(32px,5vw,64px) clamp(48px,6vw,88px)}
 .chip{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--etoile);border:1.5px solid var(--etoile);padding:6px 12px;border-radius:2px}
 .hero h1{font-family:var(--f-affiche);font-weight:900;text-transform:uppercase;font-size:clamp(56px,9vw,140px);line-height:.88;margin:18px 0 0;text-wrap:balance}
-.hero h1 span{display:block;color:var(--etoile);margin-top:.06em}
+.hero h1 span{display:block;color:var(--etoile);margin-top:.12em;font-size:.42em;line-height:1}
 .accroche{margin:22px 0 0;font-size:clamp(17px,1.6vw,20px);max-width:46ch;color:rgba(255,255,255,.88)}
 .infos{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:26px;font-size:14.5px;font-weight:600;color:rgba(255,255,255,.82)}
 .infos b{font-family:var(--f-affiche);font-weight:800;font-size:26px;color:var(--blanc);margin-right:6px}
@@ -130,8 +130,9 @@ footer a:hover{color:var(--etoile)}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 
 /* dates groupées par mois + recherche de ville */
-.mois .an{background:var(--violet);color:var(--blanc);padding:0 8px;margin-left:4px}
-.mois{font-family:var(--f-affiche);font-weight:800;text-transform:uppercase;font-size:22px;letter-spacing:.5px;color:var(--encre);padding:26px 18px 8px;border-bottom:1px solid var(--encre)}
+.mois .an,.an{display:inline-block;background:var(--violet);color:var(--blanc);font-family:var(--f-texte);font-style:normal;font-weight:800;font-size:15px;letter-spacing:1.2px;padding:3px 9px;margin-left:8px;vertical-align:middle;transition:background .14s,color .14s}
+.mois:hover .an,.infos span:hover .an{background:var(--etoile);color:var(--nuit)}
+.mois{font-family:var(--f-affiche);font-weight:900;text-transform:uppercase;font-size:clamp(30px,4vw,40px);letter-spacing:.5px;color:var(--encre);padding:26px 18px 8px;border-bottom:1px solid var(--encre)}
 .filtre-ville{display:flex;flex-direction:column;gap:6px;max-width:420px;margin:0 0 22px;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gris)}
 .filtre-ville input{font:600 17px var(--f-texte);color:var(--encre);background:var(--blanc);color-scheme:light;padding:14px 16px;border:2px solid var(--encre);border-radius:2px;text-transform:none;letter-spacing:0}
 .filtre-ville input:focus{outline:3px solid var(--etoile);outline-offset:1px}
