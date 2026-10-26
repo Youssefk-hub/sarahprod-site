@@ -48,6 +48,7 @@ function secours(c1,c2){c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns=
         <div class="actions">
           <a class="btn jaune" href="#dates">Acheter un billet</a>
           <a class="btn contour" href="#teaser">▶ Voir le teaser</a>
+          <a class="btn contour" href="#photos">Voir les photos</a>
         </div>
       </div>
       <div aria-hidden="true"></div>
@@ -65,11 +66,11 @@ function secours(c1,c2){c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns=
     <label class="filtre-ville"><span>Chercher une ville</span><input id="filtre" type="search" placeholder="Ex. Lyon, Nantes, Paris…" autocomplete="off"></label>
     <p class="vide" id="vide" hidden>Pas de date dans cette ville pour l'instant.</p>
     <div class="liste" id="liste">
-      <div class="mois">Novembre 2026</div>
-      <a class="d" href="#weezevent-grease-liège" data-ville="Liège"><div class="jour">13 nov<span>2026</span></div><div class="lieu">Liège<small>Le Forum</small></div><div class="pays">Belgique</div><span class="acheter">Acheter un billet</span></a>
-      <a class="d" href="https://my.weezevent.com/grease-is-the-word-mons" target="_blank" rel="noopener" data-ville="Mons"><div class="jour">14 nov<span>2026</span></div><div class="lieu">Mons<small>Théâtre Royal</small></div><div class="pays">Belgique</div><span class="acheter">Acheter un billet</span></a>
-      <a class="d" href="https://my.weezevent.com/grease-is-the-word-saint-quentin" target="_blank" rel="noopener" data-ville="Saint-Quentin"><div class="jour">27 nov<span>2026</span></div><div class="lieu">Saint-Quentin<small>Le Splendid</small></div><div class="pays">France</div><span class="acheter">Acheter un billet</span></a>
-      <a class="d" href="https://my.weezevent.com/grease-is-the-word-compiegne" target="_blank" rel="noopener" data-ville="Compiègne"><div class="jour">28 nov<span>2026</span></div><div class="lieu">Compiègne<small>Le Tigre</small></div><div class="pays">France</div><span class="acheter">Acheter un billet</span></a>
+      <div class="mois">Novembre <span class="an">2026</span></div>
+      <a class="d" href="#weezevent-grease-liège" data-ville="Liège"><div class="jour">13<span>vendredi</span></div><div class="lieu">Liège<small>Le Forum</small></div><div class="pays">Belgique</div><span class="acheter">Acheter un billet</span></a>
+      <a class="d" href="https://my.weezevent.com/grease-is-the-word-mons" target="_blank" rel="noopener" data-ville="Mons"><div class="jour">14<span>samedi</span></div><div class="lieu">Mons<small>Théâtre Royal</small></div><div class="pays">Belgique</div><span class="acheter">Acheter un billet</span></a>
+      <a class="d" href="https://my.weezevent.com/grease-is-the-word-saint-quentin" target="_blank" rel="noopener" data-ville="Saint-Quentin"><div class="jour">27<span>vendredi</span></div><div class="lieu">Saint-Quentin<small>Le Splendid</small></div><div class="pays">France</div><span class="acheter">Acheter un billet</span></a>
+      <a class="d" href="https://my.weezevent.com/grease-is-the-word-compiegne" target="_blank" rel="noopener" data-ville="Compiègne"><div class="jour">28<span>samedi</span></div><div class="lieu">Compiègne<small>Le Tigre</small></div><div class="pays">France</div><span class="acheter">Acheter un billet</span></a>
     </div>
     <p class="note"><span class="a-completer">À brancher</span>&nbsp; chaque bouton recevra le lien Weezevent de sa date.</p>
   </div>

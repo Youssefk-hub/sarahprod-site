@@ -110,10 +110,11 @@ img{display:block}
 .entete h2{font-family:var(--f-affiche);font-weight:900;text-transform:uppercase;font-size:clamp(46px,7vw,96px);line-height:.88;margin:0}
 .entete p{margin:0;max-width:42ch;color:var(--gris);font-size:16px}
 .liste{border-top:3px solid var(--encre)}
-.d{display:grid;grid-template-columns:150px minmax(0,1.1fr) minmax(0,1fr) auto;gap:20px;align-items:center;padding:20px 18px;border-bottom:1px solid var(--encre);position:relative;transition:background .14s,color .14s}
+.d{display:grid;grid-template-columns:175px minmax(0,1.1fr) minmax(0,1fr) auto;gap:20px;align-items:center;padding:20px 18px;border-bottom:1px solid var(--encre);position:relative;transition:background .14s,color .14s}
 .d:hover,.d:focus-visible{background:var(--violet);color:var(--blanc);outline:none}
 .jour{font-family:var(--f-affiche);font-weight:900;font-size:40px;line-height:.9;white-space:nowrap;text-transform:uppercase}
-.jour span{display:block;font-family:var(--f-texte);font-weight:700;font-size:12px;letter-spacing:1.2px;margin-top:4px;opacity:.6}
+.jour span{display:table;font-family:var(--f-texte);font-weight:800;font-size:13px;letter-spacing:1.2px;margin-top:6px;padding:2px 8px;background:var(--violet);color:var(--blanc)}
+.d:hover .jour span,.d:focus-visible .jour span{background:var(--etoile);color:var(--nuit)}
 .lieu{font-size:20px;font-weight:700;min-width:0}
 .lieu small{display:block;font-weight:400;font-size:14px;opacity:.65;margin-top:2px}
 .titre-sp{font-family:var(--f-affiche);font-weight:800;font-size:24px;text-transform:uppercase;letter-spacing:.3px;min-width:0}
@@ -191,7 +192,8 @@ footer a:hover{color:var(--etoile)}
 .prod .fl{flex:none;font-weight:700;color:var(--etoile)}
 @media(max-width:900px){
   .menu a:not(.pro){display:none}
-  .d{grid-template-columns:116px minmax(0,1fr);gap:8px 16px;padding:16px 4px}
+  .d{grid-template-columns:118px minmax(0,1fr);gap:8px 16px;padding:16px 4px}
+  .jour{font-size:26px}
   .titre-sp,.resa{grid-column:2}
   .resa{justify-self:start}
   .vign{display:none}
@@ -205,7 +207,7 @@ footer a:hover{color:var(--etoile)}
   .compteur{grid-template-columns:repeat(2,minmax(0,1fr))}
   .aff{width:172px}
   .aff img{height:240px}
-  .jour{font-size:32px}
+  .jour{font-size:26px}
 }
 @media(prefers-reduced-motion:reduce){*:not(.piste):not(.archives-piste){animation:none!important;transition:none!important}}
 </style>
@@ -372,15 +374,15 @@ const PAGES = ["grease","flashdance","dirty-dancing","sardou","jungle-book","cen
 const SHOWS = [
   {slug:"grease",        t:"Grease Is The Word",     cat:"Comédie musicale",  c1:"#7A1F1F", c2:"#D94F2B"},
   {slug:"flashdance",    t:"Flashdance The Musical", cat:"Comédie musicale",  c1:"#5B1B5E", c2:"#E0457B"},
-  {slug:"dirty-dancing", t:"Dirty Dancing Tribute",  cat:"Concert hommage",   c1:"#1E3A5F", c2:"#C98A3C"},
-  {slug:"sardou",        t:"Générations Connemara",  cat:"Concert hommage",   c1:"#1F4034", c2:"#8FBF6A"},
-  {slug:"mamma-mia",     t:"Mama Mia !",             cat:"Concert hommage",   c1:"#2B2170", c2:"#F2C14E"},
+  {slug:"dirty-dancing", t:"Dirty Dancing Tribute Concert",cat:"Concert hommage",   c1:"#1E3A5F", c2:"#C98A3C"},
+  {slug:"sardou",        t:"Générations Connemara - Tribute Michel Sardou",cat:"Concert hommage",   c1:"#1F4034", c2:"#8FBF6A"},
+  {slug:"mamma-mia",     t:"Mama Mia ! Célébration ABBA",cat:"Concert hommage",   c1:"#2B2170", c2:"#F2C14E"},
   {slug:"gitans",        t:"Gitan(s) Le Musical",    cat:"Comédie musicale",  c1:"#6B2414", c2:"#E0A030"},
-  {slug:"jungle-book",   t:"Le Livre de la Jungle",  cat:"Spectacle familial",c1:"#1F4034", c2:"#8FBF6A"},
-  {slug:"cendrillon",    t:"Cendrillon",             cat:"Spectacle familial",c1:"#4B2A6B", c2:"#C9A2E0"},
-  {slug:"aladin",        t:"Aladin",                 cat:"Spectacle familial",c1:"#1B3A6B", c2:"#E8B23A"},
-  {slug:"petite-sirene", t:"La Petite Sirène",       cat:"Spectacle familial",c1:"#0E3A52", c2:"#45C4C0"},
-  {slug:"pinocchio",     t:"Pinocchio",              cat:"Spectacle familial",c1:"#6B3410", c2:"#E0A030"}
+  {slug:"jungle-book",   t:"Le Livre de la Jungle le Musical",cat:"Spectacle familial",c1:"#1F4034", c2:"#8FBF6A"},
+  {slug:"cendrillon",    t:"Cendrillon Le Musical",cat:"Spectacle familial",c1:"#4B2A6B", c2:"#C9A2E0"},
+  {slug:"aladin",        t:"Aladin Le Musical",cat:"Spectacle familial",c1:"#1B3A6B", c2:"#E8B23A"},
+  {slug:"petite-sirene", t:"La Petite Sirène le Musical",cat:"Spectacle familial",c1:"#0E3A52", c2:"#45C4C0"},
+  {slug:"pinocchio",     t:"Pinocchio Le Voyage Musical",cat:"Spectacle familial",c1:"#6B3410", c2:"#E0A030"}
 ];
 const DATES = [
   {"j": "13", "m": "nov", "a": "2026", "ville": "Liège", "salle": "Le Forum", "s": "grease", "l": ""},

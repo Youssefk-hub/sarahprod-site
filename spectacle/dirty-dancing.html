@@ -48,6 +48,7 @@ function secours(c1,c2){c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns=
         <div class="actions">
           <a class="btn jaune" href="#dates">Acheter un billet</a>
           <a class="btn contour" href="#teaser">▶ Voir le teaser</a>
+          <a class="btn contour" href="#photos">Voir les photos</a>
         </div>
       </div>
       <div aria-hidden="true"></div>
@@ -65,20 +66,20 @@ function secours(c1,c2){c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns=
     <label class="filtre-ville"><span>Chercher une ville</span><input id="filtre" type="search" placeholder="Ex. Lyon, Nantes, Paris…" autocomplete="off"></label>
     <p class="vide" id="vide" hidden>Pas de date dans cette ville pour l'instant.</p>
     <div class="liste" id="liste">
-      <div class="mois">Janvier 2027</div>
-      <a class="d" href="https://my.weezevent.com/dirty-dancing-tribute-concert-melun" target="_blank" rel="noopener" data-ville="Melun"><div class="jour">30 janv<span>2027</span></div><div class="lieu">Melun<small>L&#x27;Escale</small></div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
-      <div class="mois">Février 2027</div>
-      <a class="d" href="#weezevent-dirty-dancing-sanary-sur-mer" data-ville="Sanary-sur-Mer"><div class="jour">06 fév<span>2027</span></div><div class="lieu">Sanary-sur-Mer<small>Galli</small></div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
-      <div class="mois">Mars 2027</div>
-      <a class="d" href="#weezevent-dirty-dancing-péronne" data-ville="Péronne"><div class="jour">20 mars<span>2027</span></div><div class="lieu">Péronne<small>Espace Mac Orlan</small></div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
-      <a class="d" href="https://my.weezevent.com/dirty-dancing-tribute-concert-compiegne" target="_blank" rel="noopener" data-ville="Compiègne"><div class="jour">21 mars<span>2027</span></div><div class="lieu">Compiègne<small>Le Tigre</small></div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
-      <div class="mois">Avril 2027</div>
-      <a class="d" href="#weezevent-dirty-dancing-bordeaux" data-ville="Bordeaux"><div class="jour">02 avr<span>2027</span></div><div class="lieu">Bordeaux</div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
-      <a class="d" href="#weezevent-dirty-dancing-saint-grégoire" data-ville="Saint-Grégoire"><div class="jour">03 avr<span>2027</span></div><div class="lieu">Saint-Grégoire<small>EMC2</small></div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
-      <a class="d" href="#weezevent-dirty-dancing-châteauneuf-sur-isère" data-ville="Châteauneuf-sur-Isère"><div class="jour">08 avr<span>2027</span></div><div class="lieu">Châteauneuf-sur-Isère<small>O Lac</small></div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
-      <a class="d" href="#weezevent-dirty-dancing-beauvais" data-ville="Beauvais"><div class="jour">16 avr<span>2027</span></div><div class="lieu">Beauvais<small>Elispace</small></div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
-      <a class="d" href="#weezevent-dirty-dancing-arras" data-ville="Arras"><div class="jour">17 avr<span>2027</span></div><div class="lieu">Arras<small>Casino, La Grand&#x27;Scène</small></div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
-      <a class="d" href="#weezevent-dirty-dancing-lille" data-ville="Lille"><div class="jour">18 avr<span>2027</span></div><div class="lieu">Lille<small>Théâtre Sébastopol</small></div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
+      <div class="mois">Janvier <span class="an">2027</span></div>
+      <a class="d" href="https://my.weezevent.com/dirty-dancing-tribute-concert-melun" target="_blank" rel="noopener" data-ville="Melun"><div class="jour">30<span>samedi</span></div><div class="lieu">Melun<small>L&#x27;Escale</small></div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
+      <div class="mois">Février <span class="an">2027</span></div>
+      <a class="d" href="#weezevent-dirty-dancing-sanary-sur-mer" data-ville="Sanary-sur-Mer"><div class="jour">06<span>samedi</span></div><div class="lieu">Sanary-sur-Mer<small>Galli</small></div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
+      <div class="mois">Mars <span class="an">2027</span></div>
+      <a class="d" href="#weezevent-dirty-dancing-péronne" data-ville="Péronne"><div class="jour">20<span>samedi</span></div><div class="lieu">Péronne<small>Espace Mac Orlan</small></div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
+      <a class="d" href="https://my.weezevent.com/dirty-dancing-tribute-concert-compiegne" target="_blank" rel="noopener" data-ville="Compiègne"><div class="jour">21<span>dimanche</span></div><div class="lieu">Compiègne<small>Le Tigre</small></div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
+      <div class="mois">Avril <span class="an">2027</span></div>
+      <a class="d" href="#weezevent-dirty-dancing-bordeaux" data-ville="Bordeaux"><div class="jour">02<span>vendredi</span></div><div class="lieu">Bordeaux</div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
+      <a class="d" href="#weezevent-dirty-dancing-saint-grégoire" data-ville="Saint-Grégoire"><div class="jour">03<span>samedi</span></div><div class="lieu">Saint-Grégoire<small>EMC2</small></div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
+      <a class="d" href="#weezevent-dirty-dancing-châteauneuf-sur-isère" data-ville="Châteauneuf-sur-Isère"><div class="jour">08<span>jeudi</span></div><div class="lieu">Châteauneuf-sur-Isère<small>O Lac</small></div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
+      <a class="d" href="#weezevent-dirty-dancing-beauvais" data-ville="Beauvais"><div class="jour">16<span>vendredi</span></div><div class="lieu">Beauvais<small>Elispace</small></div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
+      <a class="d" href="#weezevent-dirty-dancing-arras" data-ville="Arras"><div class="jour">17<span>samedi</span></div><div class="lieu">Arras<small>Casino, La Grand&#x27;Scène</small></div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
+      <a class="d" href="#weezevent-dirty-dancing-lille" data-ville="Lille"><div class="jour">18<span>dimanche</span></div><div class="lieu">Lille<small>Théâtre Sébastopol</small></div><div class="pays"></div><span class="acheter">Acheter un billet</span></a>
     </div>
     <p class="note"><span class="a-completer">À brancher</span>&nbsp; chaque bouton recevra le lien Weezevent de sa date.</p>
   </div>
