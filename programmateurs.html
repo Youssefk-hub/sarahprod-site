@@ -17,6 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/spectacle.css">
+<script src="/js/cookies.js" defer></script>
 <style>
 .page-hero{padding-bottom:clamp(48px,7vw,90px);background:radial-gradient(120% 90% at 85% 0%,rgba(91,60,213,.45),transparent 60%),var(--nuit)}
 .page-hero h1{font-family:var(--f-affiche);font-weight:900;text-transform:uppercase;font-size:clamp(32px,8.6vw,140px);line-height:.88;margin:26px 0 0}
@@ -111,7 +112,7 @@
       <label>Prénom *<input name="prenom" required autocomplete="given-name"></label>
       <label class="large">Email *<input name="email" type="email" required autocomplete="email"></label>
       <input name="site" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-      <label class="rgpd"><input type="checkbox" name="accord" required><span>J'accepte que Sarah Prod utilise ces informations pour me recontacter au sujet de la programmation de ses spectacles.</span></label>
+      <label class="rgpd"><input type="checkbox" name="accord" required><span>J'accepte que Sarah Prod utilise ces informations pour me recontacter au sujet de la programmation de ses spectacles. <a href="/confidentialite" style="color:var(--violet);font-weight:700">Confidentialité</a></span></label>
       <button class="btn violet" type="submit">Voir les spectacles et les documents</button>
     </form>
     <p class="note" id="erreur" hidden>L'envoi n'a pas fonctionné. Réessayez ou écrivez à <a href="mailto:infosarahproductions@gmail.com">infosarahproductions@gmail.com</a>.</p>
@@ -159,7 +160,7 @@ document.getElementById('form-pro').addEventListener('submit',async e=>{
 <footer class="g">
   <div class="c">
     <img src="/images/commun/logo-clair.png" alt="Sarah Prod">
-    <nav aria-label="Pied de page"><a href="/#spectacles">Spectacles</a><a href="/#dates">Dates</a><a href="/programmateurs">Programmateurs</a><a href="/#historique">Notre historique</a><a href="/qui-sommes-nous">Qui sommes-nous</a><a href="/contact">Contact</a></nav>
+    <nav aria-label="Pied de page"><a href="/#spectacles">Spectacles</a><a href="/#dates">Dates</a><a href="/programmateurs">Programmateurs</a><a href="/#historique">Notre historique</a><a href="/qui-sommes-nous">Qui sommes-nous</a><a href="/contact">Contact</a><a href="/mentions-legales">Mentions légales</a><a href="/confidentialite">Confidentialité</a></nav>
   </div>
 </footer>
 </body>
