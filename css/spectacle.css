@@ -3,7 +3,7 @@
   --nuit:#0B0726; --violet:#5B3CD5; --violet-fonce:#3A23A6; --lilas:#A996FF; --etoile:#FCDE02;
   --blanc:#FFFFFF; --encre:#0B0726; --gris:#5E5A78;
   --filet-clair:rgba(255,255,255,.16); --filet-sombre:rgba(11,7,38,.14);
-  --f-affiche:'Montserrat','Arial Black',Arial,sans-serif;
+  --f-affiche:'Antonio','Arial Narrow',Impact,sans-serif;
   --f-texte:'Source Sans 3',system-ui,-apple-system,sans-serif;
   color-scheme:dark;
 }
@@ -171,3 +171,9 @@ h2.a-venir span{color:var(--violet);display:inline-block;background:var(--etoile
   background:repeating-linear-gradient(0deg,rgba(255,255,255,.18) 0 2px,transparent 2px 22px),repeating-linear-gradient(90deg,rgba(255,255,255,.18) 0 2px,transparent 2px 22px),radial-gradient(circle at 35% 30%,#fff 0,#C9C3F0 18%,#5B3CD5 55%,#1B1250 100%);
   box-shadow:0 0 120px rgba(252,222,2,.35),0 0 0 2px rgba(255,255,255,.2)}
 @media(max-width:900px){.fond-disco{width:100%;opacity:.5}}
+
+/* Antonio : accents hauts, interlignage plus aéré */
+h1,.hero h1{line-height:1}
+h2,h3{line-height:1.02}
+.jour{line-height:1}
+.jour span,.jour em{margin-top:6px}
