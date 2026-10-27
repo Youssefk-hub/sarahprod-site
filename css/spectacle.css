@@ -3,8 +3,8 @@
   --nuit:#0B0726; --violet:#5B3CD5; --violet-fonce:#3A23A6; --lilas:#A996FF; --etoile:#FCDE02;
   --blanc:#FFFFFF; --encre:#0B0726; --gris:#5E5A78;
   --filet-clair:rgba(255,255,255,.16); --filet-sombre:rgba(11,7,38,.14);
-  --f-affiche:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;
-  --f-texte:'Schibsted Grotesk',system-ui,-apple-system,sans-serif;
+  --f-affiche:'Montserrat','Arial Black',Arial,sans-serif;
+  --f-texte:'Source Sans 3',system-ui,-apple-system,sans-serif;
   color-scheme:dark;
 }
 *{box-sizing:border-box}

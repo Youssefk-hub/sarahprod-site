@@ -11,9 +11,9 @@
 <meta property="og:site_name" content="Sarah Prod">
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Comédies musicales et spectacles en tournée en France, en Belgique et en Suisse : Flashdance The Musical, Grease Is The Word, Dirty Dancing Tribute Concert, Générations Connemara - Tribute Michel Sardou, Mama Mia ! Célébration ABBA et spectacles familiaux. 85 dates dans 56 villes jusqu'en 2028.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/montserrat-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/fonts.css">
 <style>
 /* Une landing, quatre temps : héro scène (photo recolorée aux couleurs du logo) → bandeau défilant des titres
    → liste de tournée noir/blanc (direction A) → mur d'affiches violet (direction B) → programmateurs + alertes. */
@@ -28,8 +28,8 @@
   --gris:#5E5A78;
   --filet-clair:rgba(255,255,255,.16);
   --filet-sombre:rgba(11,7,38,.14);
-  --f-affiche:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;
-  --f-texte:'Schibsted Grotesk',system-ui,-apple-system,sans-serif;
+  --f-affiche:'Montserrat','Arial Black',Arial,sans-serif;
+  --f-texte:'Source Sans 3',system-ui,-apple-system,sans-serif;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -66,7 +66,7 @@ img{display:block}
 .scene{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-block:clamp(40px,7vw,90px) clamp(48px,6vw,80px)}
 .affichette{display:inline-flex;align-items:center;gap:12px;font-size:12.5px;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;color:var(--etoile)}
 .affichette i{display:block;width:34px;height:1.5px;background:currentColor}
-.hero h1{font-family:var(--f-affiche);font-weight:900;text-transform:uppercase;font-size:clamp(52px,10vw,158px);line-height:.88;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.hero h1{font-family:var(--f-affiche);font-weight:900;text-transform:uppercase;font-size:clamp(40px,9.4vw,140px);line-height:.95;letter-spacing:-.01em;margin:0;text-wrap:balance}
 .hero h1 .l2{display:block;margin-top:.12em;color:var(--etoile);text-shadow:0 0 42px rgba(252,222,2,.45)}
 .hero .sous{margin:26px auto 0;max-width:54ch;font-size:clamp(16px,1.5vw,19px);color:rgba(255,255,255,.82)}
 
@@ -488,7 +488,7 @@ function affiche(sh){
   const mots = (sh.t1||sh.t).toUpperCase().split(' '); const lignes=[]; let l='';
   mots.forEach(m=>{ if((l+' '+m).trim().length>11){ if(l) lignes.push(l); l=m; } else l=(l+' '+m).trim(); }); if(l) lignes.push(l);
   const fs = lignes.length>3?54:64;
-  const txt = lignes.map((x,i)=>`<text x="34" y="${300+i*(fs*.95)-lignes.length*fs*.3}" font-family="Big Shoulders Display,Impact,sans-serif" font-weight="900" font-size="${fs}" fill="#fff">${esc(x)}</text>`).join('');
+  const txt = lignes.map((x,i)=>`<text x="34" y="${300+i*(fs*.95)-lignes.length*fs*.3}" font-family="Montserrat,Arial Black,sans-serif" font-weight="900" font-size="${fs}" fill="#fff">${esc(x)}</text>`).join('');
   const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="420" height="600"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${sh.c2}"/><stop offset="1" stop-color="${sh.c1}"/></linearGradient></defs><rect width="420" height="600" fill="url(#g)"/><circle cx="330" cy="110" r="140" fill="#fff" opacity=".12"/><rect x="34" y="40" width="60" height="6" fill="#FCDE02"/><text x="34" y="80" font-family="sans-serif" font-weight="700" font-size="16" letter-spacing="2" fill="#fff" opacity=".85">${esc(sh.cat.toUpperCase())}</text>${txt}${sh.t2?`<text x="34" y="${300+lignes.length*(fs*.95)-lignes.length*fs*.3+6}" font-family="sans-serif" font-weight="700" font-size="22" letter-spacing="1.5" fill="#FCDE02">${esc(sh.t2.toUpperCase())}</text>`:''}<text x="34" y="560" font-family="sans-serif" font-weight="800" font-size="18" letter-spacing="3" fill="#fff">SARAH PROD</text></svg>`;
   return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
 }
