@@ -177,3 +177,7 @@ h1,.hero h1{line-height:1}
 h2,h3{line-height:1.02}
 .jour{line-height:1}
 .jour span,.jour em{margin-top:6px}
+.d.sans-lien{cursor:default}
+.d.sans-lien:hover{background:none;color:inherit}
+.acheter.attente{background:none;color:var(--gris);box-shadow:inset 0 0 0 2px #CFCBE2}
+.d.sans-lien:hover .acheter.attente{background:none;color:var(--gris)}
