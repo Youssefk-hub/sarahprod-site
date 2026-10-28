@@ -196,7 +196,6 @@ footer a:hover{color:var(--etoile)}
 .prod h3 small{display:block;font-family:var(--f-texte);font-weight:500;text-transform:none;font-size:14px;color:rgba(255,255,255,.66);margin-top:4px}
 .prod .fl{flex:none;font-weight:700;color:var(--etoile)}
 @media(max-width:900px){
-  .menu a:not(.pro){display:none}
   .d{grid-template-columns:118px minmax(0,1fr);gap:8px 16px;padding:16px 4px}
   .jour{font-size:26px}
   .jour em{display:block}
@@ -232,7 +231,8 @@ h2,h3{line-height:1.02!important}
 
 /* Menu téléphone */
 .burger{display:none}
-@media(max-width:900px){
+@media(max-width:760px){
+  .menu a:not(.pro){display:none}
   header.nav{position:relative}
   .burger{display:inline-flex;align-items:center;gap:8px;order:3;background:none;border:2px solid rgba(255,255,255,.55);color:var(--blanc);font:700 14px var(--f-texte);padding:8px 12px;cursor:pointer;border-radius:2px}
   .burger span{display:block;width:16px;height:2px;background:currentColor;box-shadow:0 5px 0 currentColor,0 -5px 0 currentColor}
