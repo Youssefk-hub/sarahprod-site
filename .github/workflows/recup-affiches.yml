@@ -13,9 +13,11 @@ jobs:
       - name: Télécharger et redimensionner
         run: |
           set -e
+          sudo apt-get update -qq && sudo apt-get install -y -qq imagemagick webp >/dev/null
+          command -v magick >/dev/null && CONV=magick || CONV=convert
           mkdir -p images/affiches images/historique
           B=https://sarahprod.com/assets
-          dl() { curl -fsSL "$B/$1" -o "/tmp/$(basename $1)" && convert "/tmp/$(basename $1)" -resize '700x>' -quality 82 -strip "$2"; }
+          dl() { curl -fsSL "$B/$1" -o "/tmp/$(basename $1)" && $CONV "/tmp/$(basename $1)" -resize '700x>' -quality 82 -strip "$2"; }
           dl grease-CvGHqek6.jpg images/affiches/grease.jpg
           dl flashdance-CU8HKXtO.jpg images/affiches/flashdance.jpg
           dl dirty-dancing-BdpE64pJ.jpg images/affiches/dirty-dancing.jpg
