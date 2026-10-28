@@ -1,0 +1,48 @@
+name: Récupérer les affiches de l'ancien site
+on:
+  push:
+    paths: ['.github/workflows/recup-affiches.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  recup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Télécharger et redimensionner
+        run: |
+          set -e
+          mkdir -p images/affiches images/historique
+          B=https://sarahprod.com/assets
+          dl() { curl -fsSL "$B/$1" -o "/tmp/$(basename $1)" && convert "/tmp/$(basename $1)" -resize '700x>' -quality 82 -strip "$2"; }
+          dl grease-CvGHqek6.jpg images/affiches/grease.jpg
+          dl flashdance-CU8HKXtO.jpg images/affiches/flashdance.jpg
+          dl dirty-dancing-BdpE64pJ.jpg images/affiches/dirty-dancing.jpg
+          dl generations-connemara-C7KI3yT0.jpg images/affiches/sardou.jpg
+          dl jungle-book-saz2JZAk.jpg images/affiches/jungle-book.jpg
+          dl cendrillon-D8LDCL9A.jpg images/affiches/cendrillon.jpg
+          dl aladin-DYYmNvPZ.jpg images/affiches/aladin.jpg
+          dl petite-sirene-BbHXobfm.jpg images/affiches/petite-sirene.jpg
+          dl pinocchio-J7eOnJbY.jpg images/affiches/pinocchio.jpg
+          dl mamma-mia-celebration-jy037QuU.jpg images/affiches/mamma-mia.jpg
+          dl gitans-CoVwOM7K.jpg images/affiches/gitans.jpg
+          dl historique-magicien-oz-D_HoipAU.jpg images/historique/magicien-doz.jpg
+          dl historique-ali-baba-mIncVu2s.jpg images/historique/ali-baba.jpg
+          dl historique-pinocchio-Dy0mM2XN.jpg images/historique/pinocchio.jpg
+          dl historique-vampy-CAY2BC_U.jpeg images/historique/vampy.jpg
+          dl historique-seasons-BcZU-S9F.jpg images/historique/les-seasons.jpg
+          dl historique-lmt-CSE_xElB.jpeg images/historique/love-me-tender.jpg
+          dl historique-violon-Du0orQ0i.jpg images/historique/violon-sur-le-toit.jpg
+          dl historique-revanche-blonde-Dzq9PZcB.webp images/historique/revanche-blonde.jpg
+          dl historique-grease-pdc-Bzc3l2Fy.webp images/historique/grease-pdc.jpg
+          dl historique-nonnesens-Burx9HAg.webp images/historique/nonnesens.jpg
+          curl -fsSL https://sarahprod.com/videos/grease-teaser.mp4 -o videos/grease-teaser.mp4 || echo "pas de teaser grease"
+          ls -la images/affiches images/historique videos
+      - name: Enregistrer dans le dépôt
+        run: |
+          git config user.name "Youssefk-hub"
+          git config user.email "youssef.karaoud3@gmail.com"
+          git add images/affiches images/historique videos
+          git diff --cached --quiet || git commit -m "Affiches et historique rapatriés depuis l'ancien site"
+          git push
