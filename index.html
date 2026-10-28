@@ -185,8 +185,8 @@ footer a:hover{color:var(--etoile)}
 .archives:hover .archives-piste,.archives:focus-within .archives-piste{animation-play-state:paused}
 .prod{flex:0 0 clamp(250px,26vw,330px);display:flex;flex-direction:column;min-width:0;background:rgba(255,255,255,.04);border:1px solid var(--filet-clair);transition:border-color .2s,transform .2s}
 .prod:hover,.prod:focus-visible{border-color:var(--etoile);transform:translateY(-4px);outline:none}
-.prod .cadre-img{position:relative;aspect-ratio:1200/630;max-width:100%;overflow:hidden;background:var(--violet-fonce)}
-.prod img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.prod .cadre-img{position:relative;aspect-ratio:3/4;max-width:100%;overflow:hidden;background:var(--violet-fonce)}
+.prod img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;transition:transform .5s ease}
 .prod:hover img{transform:scale(1.05)}
 .prod:hover .annees,.prod:focus-visible .annees{background:var(--etoile);color:var(--nuit)}
 .prod .annees{position:absolute;left:12px;bottom:12px;background:var(--violet);color:var(--blanc);transition:background .14s,color .14s;font-family:var(--f-affiche);font-weight:800;font-size:18px;line-height:1;padding:6px 10px;font-variant-numeric:tabular-nums}
@@ -324,7 +324,7 @@ function archive(t){
       <button type="button" data-f="Concert" aria-pressed="false">Concerts hommage</button>
       <button type="button" data-f="Spectacle familial" aria-pressed="false">En famille</button>
     </div>
-    <div class="affiches" id="affiches"><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/grease"><img src="https://sarahprod.com/og/grease.jpg" alt="Affiche Grease Is The Word" loading="lazy"><figcaption><b>Grease</b><i>Is The Word</i><small>Voir le spectacle</small></figcaption></a></figure><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/flashdance"><img src="https://sarahprod.com/og/flashdance.jpg" alt="Affiche Flashdance The Musical" loading="lazy"><figcaption><b>Flashdance</b><i>The Musical</i><small>Voir le spectacle</small></figcaption></a></figure><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/dirty-dancing"><img src="https://sarahprod.com/og/dirty-dancing.jpg" alt="Affiche Dirty Dancing Tribute Concert" loading="lazy"><figcaption><b>Dirty Dancing</b><i>Tribute Concert</i><small>Voir le spectacle</small></figcaption></a></figure><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/sardou"><img src="https://sarahprod.com/og/sardou.jpg" alt="Affiche Générations Connemara - Tribute Michel Sardou" loading="lazy"><figcaption><b>Générations</b><i>Connemara</i><small>Voir le spectacle</small></figcaption></a></figure><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/mamma-mia"><img src="https://sarahprod.com/og/mamma-mia.jpg" alt="Affiche Mama Mia ! Célébration ABBA" loading="lazy"><figcaption><b>Mama Mia !</b><i>Célébration ABBA</i><small>Voir le spectacle</small></figcaption></a></figure><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/gitans"><img src="https://sarahprod.com/og/gitans.jpg" alt="Affiche Gitan(s) Le Musical" loading="lazy"><figcaption><b>Gitan(s)</b><i>Le Musical</i><small>Voir le spectacle</small></figcaption></a></figure><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/jungle-book"><img src="https://sarahprod.com/og/jungle-book.jpg" alt="Affiche Le Livre de la Jungle le Musical" loading="lazy"><figcaption><b>Le Livre de la Jungle</b><i>le Musical</i><small>Voir le spectacle</small></figcaption></a></figure><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/cendrillon"><img src="https://sarahprod.com/og/cendrillon.jpg" alt="Affiche Cendrillon Le Musical" loading="lazy"><figcaption><b>Cendrillon</b><i>Le Musical</i><small>Voir le spectacle</small></figcaption></a></figure><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/aladin"><img src="https://sarahprod.com/og/aladin.jpg" alt="Affiche Aladin Le Musical" loading="lazy"><figcaption><b>Aladin</b><i>Le Musical</i><small>Voir le spectacle</small></figcaption></a></figure><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/petite-sirene"><img src="https://sarahprod.com/og/petite-sirene.jpg" alt="Affiche La Petite Sirène le Musical" loading="lazy"><figcaption><b>La Petite Sirène</b><i>le Musical</i><small>Voir le spectacle</small></figcaption></a></figure><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/pinocchio"><img src="https://sarahprod.com/og/pinocchio.jpg" alt="Affiche Pinocchio Le Voyage Musical" loading="lazy"><figcaption><b>Pinocchio</b><i>Le Voyage Musical</i><small>Voir le spectacle</small></figcaption></a></figure></div><!--/affiches-->
+    <div class="affiches" id="affiches"><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/grease"><img src="/images/affiches/grease.jpg" alt="Affiche Grease Is The Word" loading="lazy"><figcaption><b>Grease</b><i>Is The Word</i><small>Voir le spectacle</small></figcaption></a></figure><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/flashdance"><img src="/images/affiches/flashdance.jpg" alt="Affiche Flashdance The Musical" loading="lazy"><figcaption><b>Flashdance</b><i>The Musical</i><small>Voir le spectacle</small></figcaption></a></figure><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/dirty-dancing"><img src="/images/affiches/dirty-dancing.jpg" alt="Affiche Dirty Dancing Tribute Concert" loading="lazy"><figcaption><b>Dirty Dancing</b><i>Tribute Concert</i><small>Voir le spectacle</small></figcaption></a></figure><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/sardou"><img src="/images/affiches/sardou.jpg" alt="Affiche Générations Connemara - Tribute Michel Sardou" loading="lazy"><figcaption><b>Générations</b><i>Connemara</i><small>Voir le spectacle</small></figcaption></a></figure><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/mamma-mia"><img src="/images/affiches/mamma-mia.jpg" alt="Affiche Mama Mia ! Célébration ABBA" loading="lazy"><figcaption><b>Mama Mia !</b><i>Célébration ABBA</i><small>Voir le spectacle</small></figcaption></a></figure><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/gitans"><img src="/images/affiches/gitans.jpg" alt="Affiche Gitan(s) Le Musical" loading="lazy"><figcaption><b>Gitan(s)</b><i>Le Musical</i><small>Voir le spectacle</small></figcaption></a></figure><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/jungle-book"><img src="/images/affiches/jungle-book.jpg" alt="Affiche Le Livre de la Jungle le Musical" loading="lazy"><figcaption><b>Le Livre de la Jungle</b><i>le Musical</i><small>Voir le spectacle</small></figcaption></a></figure><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/cendrillon"><img src="/images/affiches/cendrillon.jpg" alt="Affiche Cendrillon Le Musical" loading="lazy"><figcaption><b>Cendrillon</b><i>Le Musical</i><small>Voir le spectacle</small></figcaption></a></figure><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/aladin"><img src="/images/affiches/aladin.jpg" alt="Affiche Aladin Le Musical" loading="lazy"><figcaption><b>Aladin</b><i>Le Musical</i><small>Voir le spectacle</small></figcaption></a></figure><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/petite-sirene"><img src="/images/affiches/petite-sirene.jpg" alt="Affiche La Petite Sirène le Musical" loading="lazy"><figcaption><b>La Petite Sirène</b><i>le Musical</i><small>Voir le spectacle</small></figcaption></a></figure><figure class="aff" style="margin-block:0"><span class="punaise"></span><a href="/spectacle/pinocchio"><img src="/images/affiches/pinocchio.jpg" alt="Affiche Pinocchio Le Voyage Musical" loading="lazy"><figcaption><b>Pinocchio</b><i>Le Voyage Musical</i><small>Voir le spectacle</small></figcaption></a></figure></div><!--/affiches-->
   </div>
 </section>
 
@@ -345,47 +345,47 @@ function archive(t){
   <div class="c">
     <div class="tete">
       <h2>Notre <em>historique</em></h2>
-      <p>Les productions qui ont déjà tourné avant les spectacles d'aujourd'hui. Teasers, photos de scène et dossiers de presse sur chaque fiche.</p>
+      <p>Les productions qui ont déjà tourné avant les spectacles d'aujourd'hui.</p>
     </div>
     <div class="archives"><div class="archives-piste" id="archives-piste">
-      <a class="prod" href="https://sarahprod.com/historique/violon-sur-le-toit" target="_blank" rel="noopener">
-        <div class="cadre-img"><img src="https://sarahprod.com/og/historique-violon-sur-le-toit.jpg" alt="Un violon sur le toit" onerror="this.onerror=null;this.src=archive(&#39;Un violon sur le toit&#39;)"><span class="annees">2010 – 2011</span></div>
-        <div class="txt"><h3>Un violon sur le toit</h3><span class="fl" aria-hidden="true">→</span></div>
-      </a>
       <div class="prod">
-        <div class="cadre-img"><img src="https://sarahprod.com/og/historique-ali-baba.jpg" alt="Ali Baba" onerror="this.onerror=null;this.src=archive(&#39;Ali Baba&#39;)"><span class="annees">2011 – 2012</span></div>
+        <div class="cadre-img"><img src="/images/historique/violon-sur-le-toit.jpg" alt="Un violon sur le toit" onerror="this.onerror=null;this.src=archive(&#39;Un violon sur le toit&#39;)"><span class="annees">2010 – 2011</span></div>
+        <div class="txt"><h3>Un violon sur le toit</h3></div>
+      </div>
+      <div class="prod">
+        <div class="cadre-img"><img src="/images/historique/ali-baba.jpg" alt="Ali Baba" onerror="this.onerror=null;this.src=archive(&#39;Ali Baba&#39;)"><span class="annees">2011 – 2012</span></div>
         <div class="txt"><h3>Ali Baba</h3></div>
       </div>
       <div class="prod">
-        <div class="cadre-img"><img src="https://sarahprod.com/og/historique-les-seasons.jpg" alt="Les Seasons" onerror="this.onerror=null;this.src=archive(&#39;Les Seasons&#39;)"><span class="annees">2013 – 2014</span></div>
+        <div class="cadre-img"><img src="/images/historique/les-seasons.jpg" alt="Les Seasons" onerror="this.onerror=null;this.src=archive(&#39;Les Seasons&#39;)"><span class="annees">2013 – 2014</span></div>
         <div class="txt"><h3>Les Seasons</h3></div>
       </div>
-      <a class="prod" href="https://sarahprod.com/historique/pinocchio" target="_blank" rel="noopener">
-        <div class="cadre-img"><img src="https://sarahprod.com/og/historique-pinocchio.jpg" alt="Pinocchio" onerror="this.onerror=null;this.src=archive(&#39;Pinocchio&#39;)"><span class="annees">2014 – 2015</span></div>
-        <div class="txt"><h3>Pinocchio</h3><span class="fl" aria-hidden="true">→</span></div>
-      </a>
-      <a class="prod" href="https://sarahprod.com/historique/love-me-tender" target="_blank" rel="noopener">
-        <div class="cadre-img"><img src="https://sarahprod.com/og/historique-love-me-tender.jpg" alt="Love Me Tender" onerror="this.onerror=null;this.src=archive(&#39;Love Me Tender&#39;)"><span class="annees">2016 – 2017</span></div>
-        <div class="txt"><h3>Love Me Tender<small>Le Musical</small></h3><span class="fl" aria-hidden="true">→</span></div>
-      </a>
-      <a class="prod" href="https://sarahprod.com/historique/magicien-doz" target="_blank" rel="noopener">
-        <div class="cadre-img"><img src="https://sarahprod.com/og/historique-magicien-doz.jpg" alt="Le Magicien d&#39;Oz" onerror="this.onerror=null;this.src=archive(&#39;Le Magicien d’Oz&#39;)"><span class="annees">2018 – 2019</span></div>
-        <div class="txt"><h3>Le Magicien d'Oz</h3><span class="fl" aria-hidden="true">→</span></div>
-      </a>
-      <a class="prod" href="https://sarahprod.com/historique/vampy" target="_blank" rel="noopener">
-        <div class="cadre-img"><img src="https://sarahprod.com/og/historique-vampy.jpg" alt="Vampy" onerror="this.onerror=null;this.src=archive(&#39;Vampy&#39;)"><span class="annees">2018 – 2019</span></div>
-        <div class="txt"><h3>Vampy</h3><span class="fl" aria-hidden="true">→</span></div>
-      </a>
-      <a class="prod" href="https://sarahprod.com/historique/grease-pdc" target="_blank" rel="noopener">
-        <div class="cadre-img"><img src="https://sarahprod.com/og/historique-grease-pdc.jpg" alt="Grease PDC" onerror="this.onerror=null;this.src=archive(&#39;Grease PDC&#39;)"></div>
-        <div class="txt"><h3>Grease PDC</h3><span class="fl" aria-hidden="true">→</span></div>
-      </a>
-      <a class="prod" href="https://sarahprod.com/historique/revanche-blonde" target="_blank" rel="noopener">
-        <div class="cadre-img"><img src="https://sarahprod.com/og/historique-revanche-blonde.jpg" alt="La Revanche d&#39;une blonde" onerror="this.onerror=null;this.src=archive(&#39;La Revanche d’une blonde&#39;)"></div>
-        <div class="txt"><h3>La Revanche d'une blonde</h3><span class="fl" aria-hidden="true">→</span></div>
-      </a>
       <div class="prod">
-        <div class="cadre-img"><img src="https://sarahprod.com/og/historique-nonnesens.jpg" alt="Nonnesens" onerror="this.onerror=null;this.src=archive(&#39;Nonnesens&#39;)"></div>
+        <div class="cadre-img"><img src="/images/historique/pinocchio.jpg" alt="Pinocchio" onerror="this.onerror=null;this.src=archive(&#39;Pinocchio&#39;)"><span class="annees">2014 – 2015</span></div>
+        <div class="txt"><h3>Pinocchio</h3></div>
+      </div>
+      <div class="prod">
+        <div class="cadre-img"><img src="/images/historique/love-me-tender.jpg" alt="Love Me Tender" onerror="this.onerror=null;this.src=archive(&#39;Love Me Tender&#39;)"><span class="annees">2016 – 2017</span></div>
+        <div class="txt"><h3>Love Me Tender<small>Le Musical</small></h3></div>
+      </div>
+      <div class="prod">
+        <div class="cadre-img"><img src="/images/historique/magicien-doz.jpg" alt="Le Magicien d&#39;Oz" onerror="this.onerror=null;this.src=archive(&#39;Le Magicien d’Oz&#39;)"><span class="annees">2018 – 2019</span></div>
+        <div class="txt"><h3>Le Magicien d'Oz</h3></div>
+      </div>
+      <div class="prod">
+        <div class="cadre-img"><img src="/images/historique/vampy.jpg" alt="Vampy" onerror="this.onerror=null;this.src=archive(&#39;Vampy&#39;)"><span class="annees">2018 – 2019</span></div>
+        <div class="txt"><h3>Vampy</h3></div>
+      </div>
+      <div class="prod">
+        <div class="cadre-img"><img src="/images/historique/grease-pdc.jpg" alt="Grease PDC" onerror="this.onerror=null;this.src=archive(&#39;Grease PDC&#39;)"></div>
+        <div class="txt"><h3>Grease PDC</h3></div>
+      </div>
+      <div class="prod">
+        <div class="cadre-img"><img src="/images/historique/revanche-blonde.jpg" alt="La Revanche d&#39;une blonde" onerror="this.onerror=null;this.src=archive(&#39;La Revanche d’une blonde&#39;)"></div>
+        <div class="txt"><h3>La Revanche d'une blonde</h3></div>
+      </div>
+      <div class="prod">
+        <div class="cadre-img"><img src="/images/historique/nonnesens.jpg" alt="Nonnesens" onerror="this.onerror=null;this.src=archive(&#39;Nonnesens&#39;)"></div>
         <div class="txt"><h3>Nonnesens</h3></div>
       </div>
     </div></div>
@@ -565,7 +565,7 @@ function dates(items){
       <div class="jour">${d.j} <em>${d.m}</em><span>${d.a}</span></div>
       <div class="lieu">${d.ville}<small>${d.salle}</small></div>
       <div class="titre-sp">${esc(sh.t1)}<small>${esc(sh.t2)}</small></div>
-      <img class="vign" src="https://sarahprod.com/og/${sh.slug}.jpg" onerror="this.onerror=null;this.src=affiche(find('${sh.slug}'))" alt="">
+      <img class="vign" src="/images/affiches/${sh.slug}.jpg" onerror="this.onerror=null;this.src=affiche(find('${sh.slug}'))" alt="">
       <span class="resa">Acheter un billet</span>
     </a>`}).join('');
 }
@@ -582,7 +582,7 @@ function murAff(f){
   mur.innerHTML = SHOWS.filter(s=>f==='tous'||s.cat.startsWith(f)).map(sh=>`
     <figure class="aff" style="margin-block:0">
       <span class="punaise"></span>
-      <a href="${PAGES.includes(sh.slug)?'/spectacle/'+sh.slug:'#'}"><img src="https://sarahprod.com/og/${sh.slug}.jpg" onerror="this.onerror=null;this.src=affiche(find('${sh.slug}'))" alt="Affiche ${esc(sh.t)}">
+      <a href="${PAGES.includes(sh.slug)?'/spectacle/'+sh.slug:'#'}"><img src="/images/affiches/${sh.slug}.jpg" onerror="this.onerror=null;this.src=affiche(find('${sh.slug}'))" alt="Affiche ${esc(sh.t)}">
       <figcaption><b>${esc(sh.t1)}</b><i>${esc(sh.t2)}</i><small>${PAGES.includes(sh.slug)?'Voir le spectacle':sh.cat}</small></figcaption></a>
     </figure>`).join('');
 }
@@ -626,7 +626,7 @@ document.getElementById('alerte').addEventListener('submit',async e=>{
 
 /* historique : on double la piste pour un défilement continu */
 (function(){const p=document.getElementById('archives-piste'); if(!p) return;
-  const clone=p.innerHTML.replace(/<a class="prod"/g,'<a class="prod" tabindex="-1" aria-hidden="true"');
+  const clone=p.innerHTML.replace(/<div class="prod"/g,'<div class="prod" aria-hidden="true"');
   p.insertAdjacentHTML('beforeend',clone);})();
 </script>
 
