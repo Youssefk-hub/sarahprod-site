@@ -38,6 +38,19 @@
     });
   }
 
+  /* Clic sur « Acheter un billet » : mesuré dans GA4 (clic_billetterie) et Meta (InitiateCheckout), seulement après accord. */
+  var BILLETTERIES = /ticketmaster|leclercbilletterie|francebillet|fnacspectacles|utick|trium\.fr|seetickets|billetreduc/i;
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[href]"); if (!a || !BILLETTERIES.test(a.href)) return;
+    var lieu = a.querySelector(".lieu");
+    var ville = a.getAttribute("data-ville") || (lieu && lieu.firstChild ? lieu.firstChild.textContent.trim() : "");
+    var m = location.pathname.match(/\/spectacle\/([^\/?#.]+)/);
+    var spectacle = a.getAttribute("data-s") || (m ? m[1] : "");
+    var site = a.hostname.replace(/^www\./, "");
+    if (window.gtag) gtag("event", "clic_billetterie", { spectacle: spectacle, ville: ville, billetterie: site, transport_type: "beacon" });
+    if (window.fbq) fbq("track", "InitiateCheckout", { content_name: spectacle, content_category: ville });
+  }, true);
+
   window.spCookies = { ouvrir: function () { if (actif) bandeau(); else location.href = "/confidentialite#cookies"; } };
   if (!actif) return;
   var choix = lire();
