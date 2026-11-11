@@ -3,15 +3,6 @@
   "trailingSlash": false,
   "headers": [
     {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        }
-      ]
-    },
-    {
       "source": "/pro/(.*)",
       "headers": [
         {
@@ -35,6 +26,11 @@
     {
       "source": "/spectacle/:slug/",
       "destination": "/spectacle/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/historique/:slug",
+      "destination": "/#historique",
       "permanent": true
     }
   ]
