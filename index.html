@@ -253,6 +253,25 @@ h2,h3{line-height:1.02!important}
 /* Dates de l'accueil : bouton plein, plus compact sur téléphone */
 .resa{background:var(--violet);color:var(--blanc);border-color:var(--violet)}
 @media(max-width:900px){.d{padding:14px 2px;gap:4px 14px}.titre-sp{font-size:18px}.titre-sp small{font-size:11px;margin-top:2px}.lieu{font-size:17px}.lieu small{font-size:13px}.resa{padding:9px 14px;font-size:13.5px;margin-top:6px}}
+
+/* Bandeau « Prochaines dates » : badge étoile + dates qui défilent */
+.prochaines{position:relative;background:var(--nuit,#0B0726);display:flex;align-items:center;min-height:124px;padding:8px 0}
+.pr-badge{position:relative;flex-shrink:0;width:108px;height:108px;margin:0 8px 0 18px;z-index:2;rotate:-8deg;display:grid;place-items:center}
+.pr-badge svg{position:absolute;inset:0;width:100%;height:100%}
+.pr-badge span{position:relative;font-family:var(--f-affiche);font-weight:800;text-transform:uppercase;color:#FCDE02;font-size:14px;line-height:1;text-align:center;letter-spacing:.02em}
+.pr-badge b{font-size:24px;display:block}
+.pr-defile{flex:1;min-width:0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 40px,#000 calc(100% - 40px),transparent);mask-image:linear-gradient(90deg,transparent,#000 40px,#000 calc(100% - 40px),transparent)}
+.pr-piste{display:flex;width:max-content;animation:pr-defile 38s linear infinite}
+.prochaines:hover .pr-piste,.prochaines:focus-within .pr-piste{animation-play-state:paused}
+@keyframes pr-defile{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.pr-piste{animation:none}}
+.pr-d{flex-shrink:0;display:flex;align-items:baseline;gap:10px;padding:0 22px;color:#fff;text-decoration:none;white-space:nowrap}
+.pr-d span{font-weight:700;font-size:18px}
+.pr-d em{font-style:normal;font-size:18px}
+.pr-d b{font-weight:600;font-size:16px;color:#C9BEFF}
+.pr-d:hover span{text-decoration:underline}
+.pr-sep{flex-shrink:0;align-self:center;width:14px;height:14px;fill:#FCDE02}
+@media (max-width:720px){.prochaines{min-height:104px}.pr-badge{width:88px;height:88px;margin-left:10px}.pr-badge span{font-size:11px}.pr-badge b{font-size:19px}.pr-d span,.pr-d em{font-size:16px}}
 </style>
 <script>
 /* image de secours des archives si le visuel ne se charge pas (définie avant le contenu) */
@@ -303,13 +322,12 @@ function archive(t){
     </div>
   </div>
 
-  <div class="g">
-    <div class="c compteur">
-      <div><b>11</b><span>spectacles</span></div>
-      <div><b>85</b><span>dates</span></div>
-      <div><b>56</b><span>villes</span></div>
-      <div><b>2028</b><span>dernière date</span></div>
+  <div class="prochaines" id="prochaines" aria-label="Prochaines dates">
+    <div class="pr-badge" aria-hidden="true">
+      <svg viewBox="0 0 100 100"><polygon points="50,2 58,15 72,8 74,24 89,22 84,37 98,42 87,53 96,65 81,69 83,84 68,82 62,96 50,87 38,96 32,82 17,84 19,69 4,65 13,53 2,42 16,37 11,22 26,24 28,8 42,15" fill="#5B3CD5"/></svg>
+      <span>Prochaines<br><b>dates</b></span>
     </div>
+    <div class="pr-defile"><div class="pr-piste" id="pr-liste"></div></div>
   </div>
 </section>
 
@@ -634,6 +652,20 @@ document.getElementById('alerte').addEventListener('submit',async e=>{
 (function(){const p=document.getElementById('archives-piste'); if(!p) return;
   const clone=p.innerHTML.replace(/<div class="prod"/g,'<div class="prod" aria-hidden="true"');
   p.insertAdjacentHTML('beforeend',clone);})();
+
+/* Bandeau : les 4 prochaines dates à partir d'aujourd'hui */
+(function(){
+  const MO={janvier:0,'février':1,mars:2,avril:3,mai:4,juin:5,juillet:6,'août':7,septembre:8,octobre:9,novembre:10,'décembre':11};
+  const AB=['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+  const JO=['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'];
+  const auj=new Date(); auj.setHours(0,0,0,0);
+  const prochaines=DATES.map(d=>({d,t:new Date(+d.a,MO[d.m.toLowerCase()],+d.j)})).filter(x=>x.t>=auj).sort((a,b)=>a.t-b.t).slice(0,8);
+  const box=document.getElementById('pr-liste'); if(!box) return;
+  const SEP='<svg class="pr-sep" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l2.6 7.4L22 9l-6 4.8L18 22l-6-4.4L6 22l2-8.2L2 9l7.4-.6z"/></svg>';
+  const html=prochaines.map(({d,t})=>{const sh=find(d.s)||{t:d.s};
+    return `<a class="pr-d" href="${d.l||'#dates'}"${d.l?' target="_blank" rel="noopener"':''} data-s="${d.s}" data-ville="${esc(d.ville)}"><span>${esc(sh.t||'')}</span><em>${esc(d.ville)}</em><b>${JO[t.getDay()].toLowerCase()} ${t.getDate()} ${AB[t.getMonth()]}</b></a>`}).join(SEP)+SEP;
+  box.innerHTML=html+html.replace(/<a /g,'<a tabindex="-1" aria-hidden="true" ');
+})();
 </script>
 
 </body>
