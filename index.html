@@ -658,17 +658,17 @@ document.getElementById('alerte').addEventListener('submit',async e=>{
   const clone=p.innerHTML.replace(/<div class="prod"/g,'<div class="prod" aria-hidden="true"');
   p.insertAdjacentHTML('beforeend',clone);})();
 
-/* Bandeau : les 4 prochaines dates à partir d'aujourd'hui */
+/* Bandeau : la prochaine date de chaque spectacle, de la plus proche à la plus lointaine */
 (function(){
   const MO={janvier:0,'février':1,mars:2,avril:3,mai:4,juin:5,juillet:6,'août':7,septembre:8,octobre:9,novembre:10,'décembre':11};
   const AB=['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
   const JO=['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'];
   const auj=new Date(); auj.setHours(0,0,0,0);
-  const prochaines=DATES.map(d=>({d,t:new Date(+d.a,MO[d.m.toLowerCase()],+d.j)})).filter(x=>x.t>=auj).sort((a,b)=>a.t-b.t).slice(0,8);
+  const prochaines=DATES.map(d=>({d,t:new Date(+d.a,MO[d.m.toLowerCase()],+d.j)})).filter(x=>x.t>=auj).sort((a,b)=>a.t-b.t).filter((x,i,arr)=>arr.findIndex(y=>y.d.s===x.d.s)===i);
   const box=document.getElementById('pr-liste'); if(!box) return;
   const SEP='<svg class="pr-sep" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l2.6 7.4L22 9l-6 4.8L18 22l-6-4.4L6 22l2-8.2L2 9l7.4-.6z"/></svg>';
   const html=prochaines.map(({d,t})=>{const sh=find(d.s)||{t:d.s};
-    return `<a class="pr-d" href="${d.l||'#dates'}"${d.l?' target="_blank" rel="noopener"':''} data-s="${d.s}" data-ville="${esc(d.ville)}"><span>${esc(sh.t||'')}</span><em>${esc(d.ville)}</em><b>${JO[t.getDay()].toLowerCase()} ${t.getDate()} ${AB[t.getMonth()]}</b></a>`}).join(SEP);
+    return `<a class="pr-d" href="${d.l||'#dates'}"${d.l?' target="_blank" rel="noopener"':''} data-s="${d.s}" data-ville="${esc(d.ville)}"><span>${esc((sh.t||'').split(' - ')[0])}</span><em>${esc(d.ville)}</em><b>${JO[t.getDay()].toLowerCase()} ${t.getDate()} ${AB[t.getMonth()]}${t.getFullYear()!==auj.getFullYear()?' '+t.getFullYear():''}</b></a>`}).join(SEP);
   box.innerHTML=html;
   const zone=document.getElementById('pr-defile'), prec=document.querySelector('.pr-prec'), suiv=document.querySelector('.pr-suiv');
   const maj=()=>{prec.disabled=zone.scrollLeft<4; suiv.disabled=zone.scrollLeft+zone.clientWidth>=zone.scrollWidth-4;};
