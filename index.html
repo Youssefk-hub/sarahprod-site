@@ -273,7 +273,10 @@ h2,h3{line-height:1.02!important}
 .pr-d span{font-weight:700;font-size:18px}
 .pr-d em{font-style:normal;font-size:18px}
 .pr-d b{font-weight:600;font-size:16px;color:#C9BEFF}
-.pr-d:hover span{text-decoration:underline}
+.pr-lien{display:flex;align-items:baseline;gap:10px;color:#fff;text-decoration:none}
+.pr-lien:hover span{text-decoration:underline}
+.pr-plus{font-size:14px;font-weight:700;color:#FCDE02;text-decoration:none;border-bottom:1px solid rgba(252,222,2,.5);padding-bottom:1px}
+.pr-plus:hover{border-bottom-color:#FCDE02}
 .pr-sep{flex-shrink:0;align-self:center;width:14px;height:14px;fill:#FCDE02}
 @media (max-width:720px){.pr-fl{display:none}.prochaines{min-height:104px}.pr-badge{width:88px;height:88px;margin-left:10px}.pr-badge span{font-size:11px}.pr-badge b{font-size:19px}.pr-d span,.pr-d em{font-size:16px}}
 </style>
@@ -667,8 +670,11 @@ document.getElementById('alerte').addEventListener('submit',async e=>{
   const prochaines=DATES.map(d=>({d,t:new Date(+d.a,MO[d.m.toLowerCase()],+d.j)})).filter(x=>x.t>=auj).sort((a,b)=>a.t-b.t).filter((x,i,arr)=>arr.findIndex(y=>y.d.s===x.d.s)===i);
   const box=document.getElementById('pr-liste'); if(!box) return;
   const SEP='<svg class="pr-sep" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l2.6 7.4L22 9l-6 4.8L18 22l-6-4.4L6 22l2-8.2L2 9l7.4-.6z"/></svg>';
+  const avenir=DATES.filter(d=>new Date(+d.a,MO[d.m.toLowerCase()],+d.j)>=auj);
   const html=prochaines.map(({d,t})=>{const sh=find(d.s)||{t:d.s};
-    return `<a class="pr-d" href="${d.l||'#dates'}"${d.l?' target="_blank" rel="noopener"':''} data-s="${d.s}" data-ville="${esc(d.ville)}"><span>${esc((sh.t||'').split(' - ')[0])}</span><em>${esc(d.ville)}</em><b>${JO[t.getDay()].toLowerCase()} ${t.getDate()} ${AB[t.getMonth()]}${t.getFullYear()!==auj.getFullYear()?' '+t.getFullYear():''}</b></a>`}).join(SEP);
+    const autres=avenir.filter(x=>x.s===d.s).length-1;
+    const plus=autres>0?`<a class="pr-plus" href="${PAGES.includes(d.s)?'/spectacle/'+d.s+'#dates':'#dates'}">+ ${autres} autre${autres>1?'s':''} date${autres>1?'s':''}</a>`:'';
+    return `<div class="pr-d"><a class="pr-lien" href="${d.l||'#dates'}"${d.l?' target="_blank" rel="noopener"':''} data-s="${d.s}" data-ville="${esc(d.ville)}"><span>${esc((sh.t||'').split(' - ')[0])}</span><em>${esc(d.ville)}</em><b>${JO[t.getDay()].toLowerCase()} ${t.getDate()} ${AB[t.getMonth()]}${t.getFullYear()!==auj.getFullYear()?' '+t.getFullYear():''}</b></a>${plus}</div>`}).join(SEP);
   box.innerHTML=html;
   const zone=document.getElementById('pr-defile'), prec=document.querySelector('.pr-prec'), suiv=document.querySelector('.pr-suiv');
   const maj=()=>{prec.disabled=zone.scrollLeft<4; suiv.disabled=zone.scrollLeft+zone.clientWidth>=zone.scrollWidth-4;};
