@@ -260,18 +260,22 @@ h2,h3{line-height:1.02!important}
 .pr-badge svg{position:absolute;inset:0;width:100%;height:100%}
 .pr-badge span{position:relative;font-family:var(--f-affiche);font-weight:800;text-transform:uppercase;color:#FCDE02;font-size:14px;line-height:1;text-align:center;letter-spacing:.02em}
 .pr-badge b{font-size:24px;display:block}
-.pr-defile{flex:1;min-width:0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 40px,#000 calc(100% - 40px),transparent);mask-image:linear-gradient(90deg,transparent,#000 40px,#000 calc(100% - 40px),transparent)}
-.pr-piste{display:flex;width:max-content;animation:pr-defile 38s linear infinite}
-.prochaines:hover .pr-piste,.prochaines:focus-within .pr-piste{animation-play-state:paused}
-@keyframes pr-defile{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.pr-piste{animation:none}}
-.pr-d{flex-shrink:0;display:flex;align-items:baseline;gap:10px;padding:0 22px;color:#fff;text-decoration:none;white-space:nowrap}
+.pr-defile{flex:1;min-width:0;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch;cursor:grab;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 48px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 48px),transparent)}
+.pr-defile::-webkit-scrollbar{display:none}
+.pr-defile.tire{cursor:grabbing;scroll-snap-type:none}
+.pr-piste{display:flex;width:max-content;padding-right:40px}
+.pr-fl{flex-shrink:0;width:40px;height:40px;margin-right:8px;border:0;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;font-size:26px;line-height:1;cursor:pointer;display:grid;place-items:center}
+.pr-fl:hover{background:#FCDE02;color:#0B0726}
+.pr-fl[disabled]{opacity:.25;cursor:default;background:rgba(255,255,255,.1);color:#fff}
+.pr-prec{margin-left:8px}
+.pr-suiv{margin-right:18px}
+.pr-d{scroll-snap-align:start;flex-shrink:0;display:flex;align-items:baseline;gap:10px;padding:0 22px;color:#fff;text-decoration:none;white-space:nowrap}
 .pr-d span{font-weight:700;font-size:18px}
 .pr-d em{font-style:normal;font-size:18px}
 .pr-d b{font-weight:600;font-size:16px;color:#C9BEFF}
 .pr-d:hover span{text-decoration:underline}
 .pr-sep{flex-shrink:0;align-self:center;width:14px;height:14px;fill:#FCDE02}
-@media (max-width:720px){.prochaines{min-height:104px}.pr-badge{width:88px;height:88px;margin-left:10px}.pr-badge span{font-size:11px}.pr-badge b{font-size:19px}.pr-d span,.pr-d em{font-size:16px}}
+@media (max-width:720px){.pr-fl{display:none}.prochaines{min-height:104px}.pr-badge{width:88px;height:88px;margin-left:10px}.pr-badge span{font-size:11px}.pr-badge b{font-size:19px}.pr-d span,.pr-d em{font-size:16px}}
 </style>
 <script>
 /* image de secours des archives si le visuel ne se charge pas (définie avant le contenu) */
@@ -327,7 +331,8 @@ function archive(t){
       <svg viewBox="0 0 100 100"><polygon points="50,2 58,15 72,8 74,24 89,22 84,37 98,42 87,53 96,65 81,69 83,84 68,82 62,96 50,87 38,96 32,82 17,84 19,69 4,65 13,53 2,42 16,37 11,22 26,24 28,8 42,15" fill="#5B3CD5"/></svg>
       <span>Prochaines<br><b>dates</b></span>
     </div>
-    <div class="pr-defile"><div class="pr-piste" id="pr-liste"></div></div>
+    <div class="pr-defile" id="pr-defile"><div class="pr-piste" id="pr-liste"></div></div>
+    <button class="pr-fl pr-prec" type="button" aria-label="Dates précédentes">‹</button><button class="pr-fl pr-suiv" type="button" aria-label="Dates suivantes">›</button>
   </div>
 </section>
 
@@ -663,8 +668,18 @@ document.getElementById('alerte').addEventListener('submit',async e=>{
   const box=document.getElementById('pr-liste'); if(!box) return;
   const SEP='<svg class="pr-sep" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l2.6 7.4L22 9l-6 4.8L18 22l-6-4.4L6 22l2-8.2L2 9l7.4-.6z"/></svg>';
   const html=prochaines.map(({d,t})=>{const sh=find(d.s)||{t:d.s};
-    return `<a class="pr-d" href="${d.l||'#dates'}"${d.l?' target="_blank" rel="noopener"':''} data-s="${d.s}" data-ville="${esc(d.ville)}"><span>${esc(sh.t||'')}</span><em>${esc(d.ville)}</em><b>${JO[t.getDay()].toLowerCase()} ${t.getDate()} ${AB[t.getMonth()]}</b></a>`}).join(SEP)+SEP;
-  box.innerHTML=html+html.replace(/<a /g,'<a tabindex="-1" aria-hidden="true" ');
+    return `<a class="pr-d" href="${d.l||'#dates'}"${d.l?' target="_blank" rel="noopener"':''} data-s="${d.s}" data-ville="${esc(d.ville)}"><span>${esc(sh.t||'')}</span><em>${esc(d.ville)}</em><b>${JO[t.getDay()].toLowerCase()} ${t.getDate()} ${AB[t.getMonth()]}</b></a>`}).join(SEP);
+  box.innerHTML=html;
+  const zone=document.getElementById('pr-defile'), prec=document.querySelector('.pr-prec'), suiv=document.querySelector('.pr-suiv');
+  const maj=()=>{prec.disabled=zone.scrollLeft<4; suiv.disabled=zone.scrollLeft+zone.clientWidth>=zone.scrollWidth-4;};
+  prec.onclick=()=>zone.scrollBy({left:-zone.clientWidth*.8,behavior:'smooth'});
+  suiv.onclick=()=>zone.scrollBy({left:zone.clientWidth*.8,behavior:'smooth'});
+  zone.addEventListener('scroll',maj,{passive:true}); maj();
+  let x0=null,s0=0,bouge=false;
+  zone.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;x0=e.clientX;s0=zone.scrollLeft;bouge=false;});
+  window.addEventListener('pointermove',e=>{if(x0===null)return;const dx=e.clientX-x0;if(Math.abs(dx)>4){bouge=true;zone.classList.add('tire');}zone.scrollLeft=s0-dx;});
+  window.addEventListener('pointerup',()=>{x0=null;zone.classList.remove('tire');});
+  zone.addEventListener('click',e=>{if(bouge){e.preventDefault();bouge=false;}},true);
 })();
 </script>
 
