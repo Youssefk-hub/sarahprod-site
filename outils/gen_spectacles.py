@@ -393,7 +393,8 @@ def json_ld(slug, s):
              "url": f"https://sarahprod.com/spectacle/{slug}"}
         if s.get("fond"): e["image"] = [f"https://sarahprod.com/images/{slug}/{s['fond']}"]
         lien = lien_de(slug, ville)
-        if lien: e["offers"] = {"@type": "Offer", "url": lien, "availability": "https://schema.org/InStock"}
+        if lien: e["offers"] = {"@type": "Offer", "url": lien, "availability": "https://schema.org/InStock",
+                                "priceCurrency": "CHF" if pays_ == "Suisse" else "EUR"}
         evts.append(e)
     if not evts: return ""
     return '<script type="application/ld+json">' + _json.dumps({"@context": "https://schema.org", "@graph": evts}, ensure_ascii=False) + '</script>'
