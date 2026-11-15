@@ -52,6 +52,21 @@
   }, true);
 
   window.spCookies = { ouvrir: function () { if (actif) bandeau(); else location.href = "/confidentialite#cookies"; } };
+
+  /* Visites de l'équipe exclues des statistiques : ouvrir une fois sarahprod.com/?interne=1 sur chaque navigateur
+     (téléphone, ordinateur). Ce navigateur n'envoie alors plus rien à GA4 ni à Meta. ?interne=0 pour annuler. */
+  var p = new URLSearchParams(location.search).get("interne");
+  try { if (p === "1") localStorage.setItem("sp-interne", "1"); if (p === "0") localStorage.removeItem("sp-interne"); } catch (e) {}
+  var interne = false; try { interne = localStorage.getItem("sp-interne") === "1"; } catch (e) {}
+  if (p === "1" || p === "0") {
+    var avis = function () {
+      var t = document.createElement("div"); t.textContent = p === "1" ? "Mode interne activé : vos visites ne sont plus comptées dans les statistiques." : "Mode interne désactivé.";
+      t.style.cssText = "position:fixed;left:16px;right:16px;bottom:16px;z-index:1000;max-width:560px;margin:0 auto;background:#FCDE02;color:#0B0726;padding:14px 18px;font:700 15px/1.4 'Source Sans 3',system-ui,sans-serif;text-align:center";
+      document.body.appendChild(t); setTimeout(function () { t.remove(); }, 5000);
+    };
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", avis); else avis();
+  }
+  if (interne) { window.gtag = window.fbq = undefined; return; }
   if (!actif) return;
   var choix = lire();
   if (choix && choix.ok) charger();
