@@ -4,7 +4,7 @@
 (function () {
   var CONFIG = {
     ga4: "G-EVM16W30VM",      // identifiant Google Analytics, ex. "G-XXXXXXX"
-    pixelMeta: ""   // identifiant du pixel Meta, ex. "1234567890"
+    pixelMeta: "1121838207525708"   // identifiant du pixel Meta
   };
   var CLE = "sp-cookies", DUREE = 182 * 24 * 3600 * 1000;
   var actif = !!(CONFIG.ga4 || CONFIG.pixelMeta);
