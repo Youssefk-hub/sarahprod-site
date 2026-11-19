@@ -195,3 +195,13 @@ h2,h3{line-height:1.02}
   header.nav.ouvert .menu a:not(.pro){display:block;padding:14px 18px;font-size:17px;color:var(--blanc);border-bottom:1px solid rgba(255,255,255,.1)}
   header.nav.ouvert .menu .pro{margin:12px 18px 6px;text-align:center}
 }
+
+/* QUESTIONS FRÉQUENTES */
+.faq h2{margin-bottom:24px}
+.faq-liste{border-top:1px solid var(--filet-clair);max-width:900px}
+.faq details{border-bottom:1px solid var(--filet-clair)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;padding:20px 0;font:700 clamp(19px,1.8vw,24px)/1.2 var(--f-affiche);text-transform:uppercase;letter-spacing:.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--etoile);font-size:1.3em;line-height:.8}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin:0 0 22px;font-size:17px;line-height:1.6;color:rgba(255,255,255,.86);max-width:70ch}

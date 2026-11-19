@@ -380,7 +380,8 @@ def json_ld(slug, s):
     for d, ville, salle, pays in s["dates"]:
         j, m, a = d.split("/")
         info = CSV_INFO.get((d, ville), {})
-        h = _re.fullmatch(r"(\d{1,2})h(\d{2})", (info.get("Heure") or "").strip())
+        _hs = salle.split(" · ")[1] if " · " in salle else (info.get("Heure") or "")
+        h = _re.fullmatch(r"(\d{1,2})h(\d{2})", _hs.strip())
         debut = f"20{a}-{m}-{j}" + (f"T{int(h.group(1)):02d}:{h.group(2)}:00{'+01:00' if int(m) in (1,2,3,11,12) or (int(m)==10 and int(j)>25) else '+02:00'}" if h else "")
         pays_ = pays or info.get("Pays") or ""
         lieu = {"@type": "Place", "name": salle.split(" · ")[0] or ville,
@@ -456,6 +457,48 @@ def fil_ariane(slug, titre):
         {"@type": "ListItem", "position": 3, "name": titre, "item": f"https://sarahprod.com/spectacle/{slug}"}]}
     return '<script type="application/ld+json">' + _json.dumps(d, ensure_ascii=False) + '</script>'
 
+VENDEURS = [("ticketmaster", "Ticketmaster"), ("leclercbilletterie", "E.Leclerc Billetterie"), ("francebillet", "France Billet"),
+             ("fnacspectacles", "Fnac Spectacles"), ("utick", "Utick"), ("trium", "billetterie de la salle")]
+def _periode(dates):
+    """« de janvier à avril 2027 », « en novembre 2026 » ou « de novembre 2026 à janvier 2027 »."""
+    (_, m1, a1), (_, m2, a2) = dates[0][0].split("/"), dates[-1][0].split("/")
+    n1, n2 = MOIS_LONG[m1].lower(), MOIS_LONG[m2].lower()
+    if (m1, a1) == (m2, a2): return f"en {n1} 20{a1}"
+    return f"de {n1} à {n2} 20{a2}" if a1 == a2 else f"de {n1} 20{a1} à {n2} 20{a2}"
+
+def _liste_fr(xs):
+    return xs[0] if len(xs) == 1 else ", ".join(xs[:-1]) + " et " + xs[-1]
+
+def faq(slug, s):
+    """Questions fréquentes : visibles sur la page et en données FAQPage pour Google et les assistants IA.
+    Les réponses ne reprennent que les informations déjà présentes sur la page (dates, salles, billetterie, textes)."""
+    t = s["titre"]
+    qr = [(f"Qu'est-ce que {t} ?", s["accroche"])]
+    dates = s["dates"] if not s.get("bientot") else []
+    if dates:
+        villes = list(dict.fromkeys(v for _, v, *_ in dates))
+        rep = (f"{t} est en tournée {_periode(dates)}, avec {len(dates)} représentation{'s' if len(dates) > 1 else ''} "
+               f"à {_liste_fr(villes)}. La liste des dates de cette page donne pour chacune le jour, la ville et la salle.")
+        qr.append((f"Quand et où voir {t} ?", rep))
+        hotes = {lien_de(slug, v) for _, v, *_ in dates if lien_de(slug, v)}
+        noms = [nom for cle, nom in VENDEURS if any(cle in h for h in hotes)]
+        if noms:
+            qr.append((f"Comment acheter des billets pour {t} ?",
+                       f"Dans la liste des dates, cliquez sur « Acheter un billet » à côté de votre ville : le bouton ouvre directement "
+                       f"la billetterie officielle de la représentation ({_liste_fr(noms)})."))
+    else:
+        qr.append((f"Quand passe {t} près de chez moi ?", f"Les prochaines dates de {t} seront annoncées sur cette page et sur sarahprod.com dès leur ouverture."))
+    scene = dict(s["fiche"]).get("Sur scène")
+    if scene and scene != AC:
+        qr.append((f"Qui est sur scène dans {t} ?", scene + "."))
+    qr.append((f"Qui produit {t} ?", f"{t} est produit et diffusé en tournée par Sarah Productions (Sarah Prod), producteur basé à Paris "
+                                      f"de comédies musicales, de concerts hommage et de spectacles familiaux."))
+    qr = [(q.replace(" ?", "\u00a0?"), r.replace(" :", "\u00a0:")) for q, r in qr]   # pas de « ? » seul en début de ligne
+    html_ = "".join(f'<details><summary>{E(q)}</summary><p>{E(r)}</p></details>' for q, r in qr)
+    ld = {"@context": "https://schema.org", "@type": "FAQPage",
+          "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": r}} for q, r in qr]}
+    return html_, '<script type="application/ld+json">' + _json.dumps(ld, ensure_ascii=False) + '</script>'
+
 def jour_mois(d):
     j, m, a = d.split("/")
     return j, MOIS[m], "20" + a, m
@@ -489,6 +532,7 @@ def page(slug, s, existants):
     infos = "".join((f'<span><b>{E(a)}</b><i class="an">{E(b)}</i></span>' if _re.fullmatch(r"\d{4}", b) else f'<span><b>{E(a)}</b>{E(b)}</span>') for a, b in s["infos"])
     texte = "".join(f"<p>{E(p)}</p>" for p in s["texte"])
     fiche = "".join(f"<div><dt>{E(a)}</dt><dd>{E(b)}</dd></div>" for a, b in s["fiche"] if b != AC)
+    faq_html, faq_ld = faq(slug, s)
     photos = [(n, f'{s["titre"]} : {t}') for n, t in s["grandes"]] + [(n, f'{s["titre"]}, photo de scène {n}') for n in s["vignettes"]]
     grandes = "".join(f'      <button class="ph {c}" type="button"><img src="{img}photo-{n:02d}.jpg" alt="{E(a)}" loading="lazy"></button>\n'
                       for n, a, c in disposition_photos(photos, os.path.join(SITE, "images", slug)))
@@ -567,6 +611,7 @@ def page(slug, s, existants):
 {og_img}
 {json_ld(slug, s)}
 {fil_ariane(slug, s["titre"])}
+{faq_ld}
 <meta name="twitter:card" content="summary_large_image">
 {FONTS}
 {CSS_LINK}
@@ -626,6 +671,13 @@ function secours(c1,c2){{c1=c1||'#3A23A6';c2=c2||'#5B3CD5';const svg=`<svg xmlns
       {texte}
     </div>
     <dl class="fiche" style="margin:0">{fiche}</dl>
+  </div>
+</section>
+
+<section class="section g faq" style="padding-top:0">
+  <div class="c">
+    <h2>Questions fréquentes</h2>
+    <div class="faq-liste">{faq_html}</div>
   </div>
 </section>
 
@@ -731,3 +783,51 @@ _html = _re.sub(r'<div class="liste" id="liste">.*?</div><!--/liste-->|<div clas
 _html = _re.sub(r'<div class="affiches" id="affiches">.*?</div><!--/affiches-->|<div class="affiches" id="affiches"></div>', lambda m: '<div class="affiches" id="affiches">' + _aff + '</div><!--/affiches-->', _html, count=1, flags=_re.S)
 open(_ip, "w", encoding="utf-8").write(_html)
 print("accueil statique :", len(_lignes), "dates,", len(TOUS), "affiches")
+
+# --- llms.txt et llms-full.txt : résumé du site pour les assistants IA (ChatGPT, Claude, Perplexity, Gemini, Copilot) ---
+_auj = _dt.date.today()
+def _a_venir(s):
+    if s.get("bientot"): return []
+    return [x for x in s["dates"] if _dt.date(2000 + int(x[0][6:8]), int(x[0][3:5]), int(x[0][0:2])) >= _auj]
+_BILLET = ("Billetterie : chaque date renvoie directement vers son site de vente officiel "
+           "(Ticketmaster, E.Leclerc Billetterie, France Billet, Fnac Spectacles ou billetterie de la salle), depuis la page du spectacle.")
+_TETE = ("# Sarah Prod (Sarah Productions)\n\n"
+         "> Sarah Productions SAS produit et diffuse des comédies musicales, des concerts hommage et des spectacles familiaux "
+         "en tournée en France, en Belgique et en Suisse. " + _BILLET + "\n\n"
+         "Contact : infosarahproductions@gmail.com · 07 82 13 07 42 · 21 bis rue du Simplon, 75018 Paris\n")
+_PAGES = ("\n## Pages utiles\n- [Toutes les dates de tournée](https://sarahprod.com/#dates)\n- [Qui sommes-nous](https://sarahprod.com/qui-sommes-nous)\n"
+          "- [Programmateurs : fiches techniques et dossiers de presse](https://sarahprod.com/programmateurs)\n- [Contact](https://sarahprod.com/contact)\n"
+          "- [Mentions légales](https://sarahprod.com/mentions-legales)\n")
+_court, _long = [], []
+for _sl, _t, _cat, *_ in TOUS:
+    _s = SPECTACLES.get(_sl)
+    if not _s: continue
+    _av = _a_venir(_s); _url = f"https://sarahprod.com/spectacle/{_sl}"
+    if _av:
+        _villes = sorted(dict.fromkeys(v for _, v, *_ in _av))
+        _court.append(f"- [{_s['titre']}]({_url}) — {_s['cat']}. {len(_av)} date{'s' if len(_av) > 1 else ''} à venir ({_av[0][0]} au {_av[-1][0]}) : {', '.join(_villes)}.")
+    else:
+        _court.append(f"- [{_s['titre']}]({_url}) — {_s['cat']}. Dates à venir.")
+    _bloc = [f"## {_s['titre']}", f"Page : {_url}", f"Genre : {_s['cat']}", "", " ".join(_s["texte"])]
+    _fi = [f"{a} : {b}" for a, b in _s["fiche"] if b != AC and a != "Genre"]
+    if _fi: _bloc += [""] + [f"- {x}" for x in _fi]
+    if _av:
+        _bloc += ["", "Prochaines représentations :"]
+        for _d, _v, _salle, _p in _av:
+            _j, _m, _a = _d.split("/")
+            _jour = JOURS[_dt.date(2000 + int(_a), int(_m), int(_j)).weekday()]
+            _h = (_salle.split(" · ")[1] if " · " in _salle else (CSV_INFO.get((_d, _v), {}).get("Heure") or "")).strip()
+            if not _re.fullmatch(r"\d{1,2}h\d{2}", _h): _h = ""   # pas d'horaire « à confirmer » visible
+            _salle_txt = _salle.split(" · ")[0]
+            _l = lien_de(_sl, _v)
+            _bloc.append(f"- {_jour} {int(_j)} {MOIS_LONG[_m].lower()} 20{_a}" + (f", {_h}" if _h else "") +
+                         f" · {_v}" + (f" · {_salle_txt}" if _salle_txt else "") + (f" · billets : {_l}" if _l else ""))
+    else:
+        _bloc += ["", "Dates : à venir, annoncées sur la page du spectacle."]
+    _long.append("\n".join(_bloc))
+open(os.path.join(SITE, "llms.txt"), "w", encoding="utf-8").write(
+    _TETE + "\nVersion détaillée (toutes les représentations, salles, horaires et liens de billetterie) : https://sarahprod.com/llms-full.txt\n"
+    "\n## Spectacles\n" + "\n".join(_court) + "\n" + _PAGES)
+open(os.path.join(SITE, "llms-full.txt"), "w", encoding="utf-8").write(
+    _TETE + f"\nMis à jour le {_auj.day} {MOIS_LONG[f'{_auj.month:02d}'].lower()} {_auj.year}.\n\n" + "\n\n".join(_long) + "\n" + _PAGES)
+print("llms.txt et llms-full.txt écrits")

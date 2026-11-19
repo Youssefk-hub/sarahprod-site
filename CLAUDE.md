@@ -6,10 +6,10 @@ Site statique (HTML, CSS, JS) hébergé sur Vercel. Chaque push sur la branche `
 
 - `index.html` : accueil (liste de toutes les dates, mur d'affiches, historique).
 - `spectacle/*.html` : une page par spectacle. Ces pages sont générées, ne pas les modifier à la main.
-- `outils/gen_spectacles.py` : le générateur. Il contient les textes des spectacles, leurs dates (`SPECTACLES[...]["dates"]`) et les liens de billetterie (`LIENS` pour un lien propre à une date, `BILLETTERIE` pour le lien par spectacle).
+- `outils/gen_spectacles.py` : le générateur. Il contient les textes des spectacles, leurs dates (`SPECTACLES[...]["dates"]`) et les liens de billetterie (`LIENS` pour un lien propre à une date, `BILLETTERIE` pour le lien par spectacle). Il écrit aussi les questions fréquentes de chaque page (données FAQPage), `llms.txt` et `llms-full.txt` : relancer le générateur suffit à les garder à jour.
 - `donnees/dates-horaires.csv` : heures et pays des représentations.
 - `images/`, `videos/`, `css/`, `js/` : ressources. `js/cookies.js` porte GA4, le pixel Meta et la mesure des clics « Acheter un billet ».
-- `sitemap.xml`, `robots.txt`, `llms.txt` : référencement Google et IA.
+- `sitemap.xml`, `robots.txt`, `llms.txt`, `llms-full.txt` : référencement Google, Bing et IA. Le fichier `<clé>.txt` à la racine est la clé IndexNow (Bing), ne pas le supprimer.
 
 ## Modifier une date, un lien ou un texte de spectacle
 
