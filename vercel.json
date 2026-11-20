@@ -10,9 +10,60 @@
           "value": "noindex, nofollow"
         }
       ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
+      ]
     }
   ],
   "redirects": [
+    {
+      "source": "/docs/gitans-programme.pdf",
+      "destination": "/spectacle/gitans",
+      "permanent": true
+    },
+    {
+      "source": "/docs/gitans-pressbook-en.pdf",
+      "destination": "/programmateurs#gitans",
+      "permanent": true
+    },
+    {
+      "source": "/docs/aladin-fiche-technique.pdf",
+      "destination": "/programmateurs#aladin",
+      "permanent": true
+    },
+    {
+      "source": "/docs/petite-sirene-dossier-presse.pdf",
+      "destination": "/programmateurs#petite-sirene",
+      "permanent": true
+    },
+    {
+      "source": "/docs/pinocchio-dossier-presse.pdf",
+      "destination": "/programmateurs#pinocchio",
+      "permanent": true
+    },
+    {
+      "source": "/docs/:fichier*",
+      "destination": "/programmateurs",
+      "permanent": true
+    },
     {
       "source": "/dates-de-tournee",
       "destination": "/#dates",
